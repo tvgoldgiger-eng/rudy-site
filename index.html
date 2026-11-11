@@ -7,11 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
         /* БАЗОВЫЕ НАСТРОЙКИ */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             background-color: #121212;
@@ -24,33 +20,22 @@
             position: relative;
         }
 
-        /* --- БОКОВОЙ ГРАДИЕНТ (СВЕЧЕНИЕ ПО КРАЯМ) --- */
+        /* БОКОВОЙ ГРАДИЕНТ */
         body::before, body::after {
             content: '';
             position: fixed;
-            top: 0; 
-            bottom: 0;
-            width: 15vw; /* Ширина свечения по бокам */
+            top: 0; bottom: 0;
+            width: 15vw;
             z-index: -1;
-            filter: blur(100px); /* Размытие для эффекта тумана/свечения */
+            filter: blur(100px);
             opacity: 0.6;
         }
-        
-        /* Левая сторона (бирюзовое свечение) */
-        body::before {
-            left: 0;
-            background: radial-gradient(circle at left center, #00f2fe 0%, transparent 70%);
-        }
-        
-        /* Правая сторона (розовое свечение) */
-        body::after {
-            right: 0;
-            background: radial-gradient(circle at right center, #fe0979 0%, transparent 70%);
-        }
+        body::before { left: 0; background: radial-gradient(circle at left center, #00f2fe 0%, transparent 70%); }
+        body::after { right: 0; background: radial-gradient(circle at right center, #fe0979 0%, transparent 70%); }
 
         /* НАВИГАЦИЯ */
         nav {
-            background: rgba(18, 18, 18, 0.7);
+            background: rgba(18, 18, 18, 0.85);
             backdrop-filter: blur(15px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             padding: 20px 5%;
@@ -70,10 +55,7 @@
             text-shadow: 0 0 10px #00f2fe;
         }
 
-        .nav-menu {
-            display: flex;
-            gap: 15px;
-        }
+        .nav-menu { display: flex; gap: 15px; }
 
         .nav-btn {
             background: transparent;
@@ -90,10 +72,7 @@
             letter-spacing: 1px;
         }
 
-        .nav-btn:hover {
-            color: #ffffff;
-        }
-
+        .nav-btn:hover { color: #ffffff; }
         .nav-btn.active {
             color: #00f2fe;
             border-bottom: 2px solid #00f2fe;
@@ -117,200 +96,141 @@
             max-width: 1000px;
             animation: fadeIn 0.5s ease-out forwards;
         }
-
-        .page-content.active {
-            display: block;
-        }
+        .page-content.active { display: block; }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* ГЛАВНАЯ СТРАНИЦА */
+        /* ГЛАВНАЯ */
         .hero {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            justify-content: center;
-            min-height: 60vh;
+            display: flex; flex-direction: column; align-items: center;
+            text-align: center; justify-content: center; min-height: 60vh;
         }
-
         .hero h1 {
-            font-family: 'Press Start 2P', cursive;
-            font-size: 40px;
-            line-height: 1.4;
-            margin-bottom: 25px;
+            font-family: 'Press Start 2P', cursive; font-size: 40px;
+            line-height: 1.4; margin-bottom: 25px;
         }
+        .hero h1 span { color: #fe0979; text-shadow: 0 0 15px rgba(254, 9, 121, 0.8), 0 0 30px rgba(254, 9, 121, 0.4); }
+        .hero p { font-size: 18px; color: #b0b0b0; margin-bottom: 50px; max-width: 600px; line-height: 1.6; }
 
-        .hero h1 span {
-            color: #fe0979;
-            text-shadow: 0 0 15px rgba(254, 9, 121, 0.8), 0 0 30px rgba(254, 9, 121, 0.4);
-        }
-
-        .hero p {
-            font-size: 18px;
-            color: #b0b0b0;
-            margin-bottom: 50px;
-            max-width: 600px;
-            line-height: 1.6;
-        }
-
-        /* --- НЕОНОВЫЕ КНОПКИ --- */
-        .socials {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
+        /* НЕОНОВЫЕ КНОПКИ */
+        .socials { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
         .mc-btn {
-            display: flex;
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            padding: 15px 35px; text-decoration: none; font-weight: 900; font-size: 16px;
+            border-radius: 8px; color: #ffffff; text-transform: uppercase; letter-spacing: 1px;
+            background: #121212; transition: all 0.3s ease; border: none; cursor: pointer; font-family: 'Montserrat', sans-serif;
+        }
+
+        .btn-yt { border: 2px solid #ff0000; text-shadow: 0 0 8px #ff0000; box-shadow: 0 0 15px rgba(255, 0, 0, 0.3); }
+        .btn-yt:hover { background: #ff0000; box-shadow: 0 0 20px #ff0000; text-shadow: 0 0 5px #ffffff; transform: translateY(-3px); }
+
+        .btn-tg { border: 2px solid #0088cc; text-shadow: 0 0 8px #0088cc; box-shadow: 0 0 15px rgba(0, 136, 204, 0.3); }
+        .btn-tg:hover { background: #0088cc; box-shadow: 0 0 20px #0088cc; text-shadow: 0 0 5px #ffffff; transform: translateY(-3px); }
+
+        .btn-tt { border: 2px solid #00f2fe; text-shadow: 0 0 8px #00f2fe; box-shadow: 0 0 15px rgba(0, 242, 254, 0.3); }
+        .btn-tt:hover { background: linear-gradient(45deg, #fe0979, #00f2fe); box-shadow: 0 0 20px #00f2fe; text-shadow: 0 0 5px #ffffff; transform: translateY(-3px); border-color: transparent; }
+
+        /* КНОПКА ПОДДЕРЖКИ (Маленькая и аккуратная) */
+        .btn-support-small {
+            display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            padding: 15px 35px;
-            text-decoration: none;
-            font-weight: 900;
-            font-size: 16px;
-            border-radius: 8px;
+            padding: 10px 24px;
+            font-weight: 700;
+            font-size: 14px;
             color: #ffffff;
+            background: rgba(0, 136, 204, 0.1);
+            border: 2px solid #0088cc;
+            border-radius: 8px;
+            text-decoration: none;
             text-transform: uppercase;
             letter-spacing: 1px;
-            background: #121212;
             transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(0, 136, 204, 0.2);
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
         }
-
-        /* YouTube */
-        .btn-yt {
-            border: 2px solid #ff0000;
-            text-shadow: 0 0 8px #ff0000, 0 0 15px #ff0000;
-            box-shadow: 0 0 15px rgba(255, 0, 0, 0.5), inset 0 0 15px rgba(255, 0, 0, 0.3);
-        }
-        .btn-yt:hover {
-            background: #ff0000;
-            box-shadow: 0 0 20px #ff0000, 0 0 40px #ff0000, inset 0 0 10px #ffffff;
-            text-shadow: 0 0 5px #ffffff;
-            transform: translateY(-3px);
-        }
-
-        /* Telegram */
-        .btn-tg {
-            border: 2px solid #0088cc;
-            text-shadow: 0 0 8px #0088cc, 0 0 15px #0088cc;
-            box-shadow: 0 0 15px rgba(0, 136, 204, 0.5), inset 0 0 15px rgba(0, 136, 204, 0.3);
-        }
-        .btn-tg:hover {
+        .btn-support-small:hover {
             background: #0088cc;
-            box-shadow: 0 0 20px #0088cc, 0 0 40px #0088cc, inset 0 0 10px #ffffff;
+            box-shadow: 0 0 20px rgba(0, 136, 204, 0.8);
             text-shadow: 0 0 5px #ffffff;
-            transform: translateY(-3px);
-        }
-
-        /* TikTok (двойное свечение) */
-        .btn-tt {
-            border: 2px solid #00f2fe;
-            text-shadow: 0 0 8px #00f2fe, 0 0 15px #fe0979;
-            box-shadow: -3px 0 15px rgba(254, 9, 121, 0.5), 3px 0 15px rgba(0, 242, 254, 0.5), inset 0 0 15px rgba(0, 242, 254, 0.3);
-        }
-        .btn-tt:hover {
-            background: linear-gradient(45deg, #fe0979, #00f2fe);
-            box-shadow: 0 0 20px #00f2fe, 0 0 40px #fe0979, inset 0 0 10px #ffffff;
-            text-shadow: 0 0 5px #ffffff;
-            transform: translateY(-3px);
-            border-color: transparent;
+            transform: translateY(-2px);
         }
 
         /* СТЕКЛЯННЫЕ КАРТОЧКИ */
         .glass-card {
             background: rgba(18, 18, 18, 0.85);
             border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            padding: 40px;
+            border-radius: 15px; padding: 40px;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-            position: relative;
-            overflow: hidden;
-            backdrop-filter: blur(5px);
+            position: relative; overflow: hidden; backdrop-filter: blur(5px);
+            margin-bottom: 20px;
         }
-
         .glass-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 3px;
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px;
             background: linear-gradient(90deg, #fe0979, #00f2fe);
         }
+        .glass-card h2 { font-family: 'Press Start 2P', cursive; color: #00f2fe; margin-bottom: 25px; font-size: 18px; }
+        .glass-card p { font-size: 16px; line-height: 1.8; color: #cccccc; margin-bottom: 15px; }
+        .glass-card strong { color: #fe0979; }
 
-        .glass-card h2 {
-            font-family: 'Press Start 2P', cursive;
-            color: #00f2fe;
-            margin-bottom: 25px;
-            font-size: 18px;
-            text-shadow: 0 0 10px rgba(0, 242, 254, 0.4);
-        }
-
-        .glass-card p {
-            font-size: 16px;
-            line-height: 1.8;
-            color: #cccccc;
-            margin-bottom: 15px;
-        }
-
-        .glass-card strong {
-            color: #fe0979;
-        }
-
-        /* СЕТКА НОВОСТЕЙ */
-        .media-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-
+        /* КАРТОЧКИ НОВОСТЕЙ */
+        .media-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 20px; }
         .media-card {
-            background: rgba(18, 18, 18, 0.85);
-            border: 1px solid rgba(255, 255, 255, 0.03);
-            border-left: 4px solid #fe0979;
-            border-radius: 10px;
-            padding: 25px;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(5px);
+            background: rgba(18, 18, 18, 0.85); border: 1px solid rgba(255, 255, 255, 0.03);
+            border-left: 4px solid #fe0979; border-radius: 10px; padding: 25px; transition: all 0.3s ease; backdrop-filter: blur(5px);
         }
+        .media-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(254, 9, 121, 0.15); border-left-color: #00f2fe; }
+        .media-card h3 { margin-bottom: 10px; color: #ffffff; font-size: 18px; }
+        .media-card p { color: #aaaaaa; font-size: 14px; line-height: 1.5; }
+        .media-card .views { color: #00f2fe; font-weight: bold; }
 
-        .media-card:hover {
-            transform: translateY(-5px);
-            background: rgba(25, 25, 30, 0.9);
-            box-shadow: 0 10px 20px rgba(254, 9, 121, 0.15);
-            border-left-color: #00f2fe;
+        /* ВКЛАДКА СЕРВЕРА */
+        .server-hero { text-align: center; margin-bottom: 30px; }
+        .server-hero h1 { font-family: 'Press Start 2P', cursive; font-size: 32px; color: #ffffff; margin-bottom: 15px; text-shadow: 0 0 15px #00f2fe; }
+        .server-hero p { color: #b0b0b0; font-size: 18px; }
+        
+        .ip-box {
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            background: rgba(0, 242, 254, 0.05); border: 2px dashed #00f2fe;
+            padding: 30px; border-radius: 15px; margin-top: 20px;
+            box-shadow: inset 0 0 20px rgba(0, 242, 254, 0.1);
         }
-
-        .media-card h3 {
-            margin-bottom: 10px;
-            color: #ffffff;
-            font-size: 18px;
+        .ip-text {
+            font-family: 'Press Start 2P', cursive; font-size: 24px; color: #00f2fe;
+            margin-bottom: 20px; letter-spacing: 2px; text-shadow: 0 0 10px rgba(0, 242, 254, 0.8);
+            text-align: center; word-break: break-all;
         }
-
-        .media-card p {
-            color: #aaaaaa;
-            font-size: 14px;
-            line-height: 1.5;
+        .btn-copy {
+            background: #00f2fe; color: #121212; border: none; padding: 12px 25px;
+            font-weight: 900; font-size: 16px; border-radius: 8px; cursor: pointer;
+            transition: 0.3s; text-transform: uppercase; font-family: 'Montserrat', sans-serif;
         }
+        .btn-copy:hover { background: #ffffff; box-shadow: 0 0 20px #00f2fe; transform: scale(1.05); }
 
-        .media-card .views {
-            color: #00f2fe;
-            font-weight: bold;
+        /* ПОДВАЛ САЙТА */
+        .site-footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: #555555;
+            font-size: 12px;
+            letter-spacing: 1px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.05);
         }
 
         /* МОБИЛЬНАЯ АДАПТАЦИЯ */
         @media (max-width: 768px) {
             .hero h1 { font-size: 24px; }
-            .hero p { font-size: 15px; }
+            .server-hero h1 { font-size: 22px; }
+            .ip-text { font-size: 16px; }
             nav { flex-direction: column; gap: 15px; padding: 15px; }
             main { margin-top: 130px; }
             .mc-btn { width: 100%; padding: 12px; font-size: 14px; }
             .glass-card { padding: 20px; }
-            /* На телефоне делаем свечение по бокам чуть меньше, чтобы не мешало */
             body::before, body::after { width: 25vw; opacity: 0.4; }
         }
     </style>
@@ -318,9 +238,10 @@
 <body>
 
     <nav>
-        <div class="logo">RUDI</div>
+        <div class="logo">РУДИ</div>
         <div class="nav-menu">
             <button class="nav-btn active" onclick="switchTab('home', this)">Главная</button>
+            <button class="nav-btn" onclick="switchTab('server', this)">Наш Сервер</button>
             <button class="nav-btn" onclick="switchTab('about', this)">О канале</button>
             <button class="nav-btn" onclick="switchTab('media', this)">Медиа</button>
         </div>
@@ -330,9 +251,8 @@
         <!-- ВКЛАДКА: ГЛАВНАЯ -->
         <div id="home" class="page-content active">
             <div class="hero">
-                <h1>Всем привет!<br>Я <span>RUDI</span></h1>
+                <h1>Всем привет!<br>Я <span>РУДИ</span></h1>
                 <p>Снимаю угарные видео по Minecraft. Челленджи, выживания и полный хаос. Залетай на огонек!</p>
-                
                 <div class="socials">
                     <a href="https://youtube.com/@tv_rudi?si=gmI9cu93EHYsHO7s" target="_blank" class="mc-btn btn-yt">▶ YouTube</a>
                     <a href="https://t.me/RUDI_TV1" target="_blank" class="mc-btn btn-tg">✈ Telegram</a>
@@ -341,11 +261,60 @@
             </div>
         </div>
 
+        <!-- ВКЛАДКА: НАШ СЕРВЕР -->
+        <div id="server" class="page-content">
+            <div class="server-hero">
+                <h1>НАШ СЕРВЕР</h1>
+                <p>Твой билет в мир приключений!</p>
+            </div>
+
+            <!-- Карточка с IP -->
+            <div class="glass-card" style="text-align: center;">
+                <h2>IP Адрес сервера</h2>
+                <div class="ip-box">
+                    <div class="ip-text" id="server-ip">95.216.92.71:25817</div>
+                    <button class="btn-copy" onclick="copyIP()">СКОПИРОВАТЬ IP</button>
+                </div>
+            </div>
+
+            <!-- Карточка с приветствием -->
+            <div class="glass-card">
+                <h2>Залетай к нам!</h2>
+                <p>Хочешь прикольные и забавные приключения? Тогда тебе точно к нам! Здесь тебя ждет уютное выживание без лишних модов. Мы ценим адекватную игру, поэтому у нас работают приваты (твои постройки никто не сломает), а за порядком следит хорошая администрация.</p>
+                <p>Заходи, строй свою базу, находи друзей и создавай свою историю. Поддерживаются все версии игры (от старых до новых) и пиратские лаунчеры!</p>
+            </div>
+
+            <!-- Карточка с новостями/идеями сервера -->
+            <div class="glass-card">
+                <h2>Новости и Идеи</h2>
+                <p>Следи за обновлениями сервера и новыми ивентами здесь.</p>
+                <div class="media-grid">
+                    <div class="media-card">
+                        <h3>Открытие сервера!</h3>
+                        <p>Наш сервер официально запущен. Заходи первым, занимай лучшие места для базы и получай статус старожила!</p>
+                    </div>
+                    <div class="media-card">
+                        <h3>Ивент: Гонка за алмазами</h3>
+                        <p>Скоро проведем первый ивент. Кто накопит больше всего ресурсов за 2 часа — получит крутой приз на сервере.</p>
+                    </div>
+                    <div class="media-card">
+                        <h3>Набор в Админы</h3>
+                        <p>Ищем ответственных модераторов. Если ты адекватный и хочешь помогать развивать сервер — пиши в поддержку.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Аккуратная кнопка поддержки -->
+            <div style="text-align: center; margin-top: 20px; margin-bottom: 20px;">
+                <a href="https://t.me/RUDI_TV1" target="_blank" class="btn-support-small">✈ Написать в поддержку</a>
+            </div>
+        </div>
+
         <!-- ВКЛАДКА: О КАНАЛЕ -->
         <div id="about" class="page-content">
             <div class="glass-card">
                 <h2>Кто такой Руди?</h2>
-                <p>Привет, меня зовут <strong>Даниил</strong>, но в сети ты знаешь меня как <strong>RUDI</strong>. Я обычный пацан, который обожает Майнкрафт и решил начать снимать видосы.</p>
+                <p>Привет, меня зовут <strong>Даниил</strong>, но в сети ты знаешь меня как <strong>Руди</strong>. Я обычный пацан, который обожает Майнкрафт и решил начать снимать видосы.</p>
                 <p>На моем канале ты не найдешь скучных прохождений. Я делаю ставку на драйв, челленджи и приколы. Мы с моим напарником (ИИ по имени Дан) постоянно придумываем безумные сценарии: от выживания в Аду до ковчегов во время потопа.</p>
                 <p>Я верю, что контент должен приносить кайф. Поэтому если тебе нравится смотреть, как кто-то страдает от невидимых криперов или строит базу на лаве — тебе точно ко мне!</p>
             </div>
@@ -374,8 +343,13 @@
         </div>
     </main>
 
+    <!-- Маленькая надпись внизу сайта -->
+    <div class="site-footer">
+        Подпишись на канал
+    </div>
+
     <script>
-        // Скрипт для переключения вкладок
+        // Переключение вкладок
         function switchTab(tabId, btnElement) {
             var contents = document.querySelectorAll('.page-content');
             for (var i = 0; i < contents.length; i++) {
@@ -391,6 +365,16 @@
             if (btnElement) {
                 btnElement.classList.add('active');
             }
+        }
+
+        // Функция копирования IP
+        function copyIP() {
+            var ipText = document.getElementById("server-ip").innerText;
+            navigator.clipboard.writeText(ipText).then(function() {
+                alert("✅ IP скопирован: " + ipText + "\n\nВставляй его в Minecraft и заходи на сервер!");
+            }).catch(function(err) {
+                alert("Не удалось скопировать автоматически. Выдели IP вручную: " + ipText);
+            });
         }
     </script>
 </body>
