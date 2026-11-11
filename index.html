@@ -14,73 +14,36 @@
         }
 
         body {
-            background-color: #0f0f0f;
-            color: #ffffff;
             font-family: 'Montserrat', sans-serif;
+            color: #ffffff;
             overflow-x: hidden;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            
+            /* ФОН. Если захочешь свою картинку — поменяй ссылку внутри url() на свою */
+            background-image: url('https://images.unsplash.com/photo-1607513746994-51f730a44832?q=80&w=1920&auto=format&fit=crop'); 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
         }
 
-        /* ФОН (ШАХТА) */
-        .bg-cave {
+        /* Затемнение фона, чтобы текст читался */
+        .overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            background: rgba(0, 0, 0, 0.65); /* Темная вуаль */
             z-index: -1;
-            background: radial-gradient(circle at center, #2a2a2a 0%, #0a0a0a 100%);
-        }
-
-        .bg-grid {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(rgba(0,0,0,0.4) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0,0,0,0.4) 1px, transparent 1px);
-            background-size: 40px 40px;
-            opacity: 0.5;
-        }
-
-        /* ФАКЕЛЫ */
-        .torch {
-            position: absolute;
-            width: 12px;
-            height: 40px;
-            background: #5d4037;
-            box-shadow: 0 -20px 30px #ff9800, 0 -40px 60px #ff5722;
-            animation: flicker 1.5s infinite alternate;
-        }
-
-        .torch::before {
-            content: '';
-            position: absolute;
-            top: -15px;
-            left: -4px;
-            width: 20px;
-            height: 20px;
-            background: #ffeb3b;
-            border-radius: 50%;
-            filter: blur(4px);
-        }
-
-        .torch-1 { top: 20%; left: 10%; }
-        .torch-2 { top: 60%; right: 15%; }
-        .torch-3 { bottom: 10%; left: 30%; }
-
-        @keyframes flicker {
-            0% { opacity: 0.8; box-shadow: 0 -20px 30px #ff9800, 0 -40px 60px #ff5722; }
-            100% { opacity: 1; box-shadow: 0 -25px 40px #ffb300, 0 -50px 80px #ff5722; }
         }
 
         /* НАВИГАЦИЯ */
         nav {
             background: rgba(10, 10, 10, 0.85);
             backdrop-filter: blur(10px);
-            border-bottom: 2px solid rgba(76, 175, 80, 0.3);
+            border-bottom: 2px solid rgba(76, 175, 80, 0.5);
             padding: 15px 5%;
             display: flex;
             justify-content: space-between;
@@ -106,7 +69,7 @@
         .nav-btn {
             background: transparent;
             border: none;
-            color: #aaaaaa;
+            color: #cccccc;
             font-family: 'Montserrat', sans-serif;
             font-weight: 700;
             font-size: 14px;
@@ -124,7 +87,7 @@
 
         .nav-btn.active {
             color: #ffffff;
-            background: rgba(76, 175, 80, 0.2);
+            background: rgba(76, 175, 80, 0.3);
             border-bottom: 2px solid #4CAF50;
         }
 
@@ -162,15 +125,15 @@
             align-items: center;
             text-align: center;
             justify-content: center;
-            min-height: 60vh;
+            min-height: 65vh;
         }
 
         .hero h1 {
             font-family: 'Press Start 2P', cursive;
-            font-size: 38px;
+            font-size: 42px;
             line-height: 1.4;
             margin-bottom: 20px;
-            text-shadow: 4px 4px 0 #000000;
+            text-shadow: 4px 4px 0 #000000, 0 0 20px rgba(0,0,0,0.8);
         }
 
         .hero h1 span {
@@ -178,17 +141,19 @@
         }
 
         .hero p {
-            font-size: 18px;
-            color: #cccccc;
+            font-size: 20px;
+            color: #ffffff;
             margin-bottom: 40px;
             max-width: 600px;
             line-height: 1.6;
+            font-weight: 700;
+            text-shadow: 2px 2px 0 #000000, 0 0 10px rgba(0,0,0,0.8);
         }
 
         /* КНОПКИ */
         .socials {
             display: flex;
-            gap: 20px;
+            gap: 15px;
             flex-wrap: wrap;
             justify-content: center;
         }
@@ -196,6 +161,7 @@
         .mc-btn {
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 10px;
             padding: 16px 32px;
             text-decoration: none;
@@ -206,6 +172,7 @@
             text-transform: uppercase;
             border: 2px solid #000000;
             transition: transform 0.1s ease, box-shadow 0.1s ease;
+            min-width: 180px;
         }
 
         .mc-btn:active {
@@ -213,23 +180,36 @@
             box-shadow: none !important;
         }
 
+        /* Кнопка YouTube */
         .btn-yt {
             background: #ff0000;
             box-shadow: 0 6px 0 #b30000;
             border-color: #ff4d4d;
+            text-shadow: 1px 1px 0 #000;
         }
 
+        /* Кнопка Telegram */
         .btn-tg {
             background: #0088cc;
             box-shadow: 0 6px 0 #005580;
             border-color: #33aaff;
+            text-shadow: 1px 1px 0 #000;
+        }
+
+        /* Кнопка TikTok */
+        .btn-tt {
+            background: #000000;
+            box-shadow: 0 6px 0 #222222;
+            border-color: #00f2fe; /* Неоновая рамка */
+            color: #ffffff;
+            text-shadow: 1px 1px 0 #fe0979; /* Розовый отблеск */
         }
 
         /* СТЕКЛЯННЫЕ КАРТОЧКИ */
         .glass-card {
-            background: rgba(20, 20, 20, 0.85);
+            background: rgba(15, 15, 15, 0.85);
             backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
             border-radius: 15px;
             padding: 40px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
@@ -240,6 +220,7 @@
             color: #4CAF50;
             margin-bottom: 25px;
             font-size: 20px;
+            text-shadow: 2px 2px 0 #000;
         }
 
         .glass-card p {
@@ -257,7 +238,7 @@
         }
 
         .media-card {
-            background: rgba(30, 30, 30, 0.9);
+            background: rgba(20, 20, 20, 0.9);
             border-left: 5px solid #ff4444;
             border-radius: 10px;
             padding: 25px;
@@ -266,7 +247,7 @@
 
         .media-card:hover {
             transform: translateY(-5px);
-            background: rgba(45, 45, 45, 0.9);
+            background: rgba(35, 35, 35, 0.95);
             box-shadow: 0 10px 20px rgba(255, 68, 68, 0.2);
         }
 
@@ -282,122 +263,46 @@
             line-height: 1.5;
         }
 
-        /* ПЕРСОНАЖИ (SVG) */
-        .chars {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            display: flex;
-            justify-content: space-around;
-            align-items: flex-end;
-            pointer-events: none;
-            z-index: 5;
-            padding: 0 5%;
-        }
-
-        .char {
-            width: 140px;
-            height: 230px;
-            filter: drop-shadow(5px 5px 10px rgba(0,0,0,0.8));
-            animation: float 3s ease-in-out infinite;
-        }
-
-        .char:nth-child(2) { width: 110px; height: 190px; animation-delay: 1s; }
-        .char:nth-child(3) { width: 120px; height: 200px; animation-delay: 2s; }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
-
         /* МОБИЛЬНАЯ АДАПТАЦИЯ */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 24px; }
+            .hero h1 { font-size: 26px; }
+            .hero p { font-size: 16px; }
             .nav-btn { padding: 6px 10px; font-size: 12px; }
             .glass-card { padding: 20px; }
-            .chars { display: none; }
+            .mc-btn { width: 100%; padding: 14px 20px; font-size: 16px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="bg-cave">
-        <div class="bg-grid"></div>
-        <div class="torch torch-1"></div>
-        <div class="torch torch-2"></div>
-        <div class="torch torch-3"></div>
-    </div>
-
-    <div class="chars">
-        <svg class="char" viewBox="0 0 100 200">
-            <rect x="20" y="20" width="60" height="60" fill="#4e7a3d"/>
-            <rect x="30" y="40" width="15" height="10" fill="#111111"/>
-            <rect x="55" y="40" width="15" height="10" fill="#111111"/>
-            <rect x="35" y="65" width="30" height="5" fill="#111111"/>
-            <rect x="25" y="80" width="50" height="70" fill="#0088cc"/>
-            <rect x="5" y="80" width="20" height="60" fill="#4e7a3d"/>
-            <rect x="75" y="80" width="20" height="60" fill="#4e7a3d"/>
-            <rect x="30" y="150" width="15" height="40" fill="#1e3d88"/>
-            <rect x="55" y="150" width="15" height="40" fill="#1e3d88"/>
-        </svg>
-
-        <svg class="char" viewBox="0 0 100 200">
-            <rect x="25" y="10" width="50" height="50" fill="#f1c27d"/>
-            <rect x="25" y="5" width="50" height="15" fill="#4e342e"/>
-            <rect x="25" y="10" width="50" height="6" fill="#b71c1c"/>
-            <rect x="32" y="30" width="10" height="6" fill="#ffffff"/>
-            <rect x="58" y="30" width="10" height="6" fill="#ffffff"/>
-            <rect x="34" y="30" width="6" height="6" fill="#111111"/>
-            <rect x="60" y="30" width="6" height="6" fill="#111111"/>
-            <rect x="25" y="60" width="50" height="70" fill="#cc0000"/>
-            <path d="M25,60 h10 v70 h-10 Z M45,60 h10 v70 h-10 Z M65,60 h10 v70 h-10 Z M25,70 h50 v10 h-50 Z M25,90 h50 v10 h-50 Z M25,110 h50 v10 h-50 Z" fill="#111111"/>
-            <rect x="5" y="60" width="20" height="60" fill="#cc0000"/>
-            <rect x="5" y="60" width="20" height="60" fill="rgba(0,0,0,0.5)"/>
-            <rect x="75" y="60" width="20" height="60" fill="#cc0000"/>
-            <rect x="75" y="60" width="20" height="60" fill="rgba(0,0,0,0.5)"/>
-            <rect x="30" y="130" width="15" height="60" fill="#111111"/>
-            <rect x="55" y="130" width="15" height="60" fill="#111111"/>
-            <rect x="30" y="180" width="15" height="10" fill="#e0e0e0"/>
-            <rect x="55" y="180" width="15" height="10" fill="#e0e0e0"/>
-            <rect x="85" y="40" width="6" height="80" fill="#8d6e63" transform="rotate(20 85 40)"/>
-            <path d="M70,40 Q85,20 110,40 L110,50 Q85,30 70,50 Z" fill="#90a4ae"/>
-        </svg>
-
-        <svg class="char" viewBox="0 0 100 200">
-            <rect x="20" y="20" width="60" height="60" fill="#4caf50"/>
-            <rect x="30" y="40" width="15" height="15" fill="#111111"/>
-            <rect x="55" y="40" width="15" height="15" fill="#111111"/>
-            <rect x="40" y="55" width="20" height="15" fill="#111111"/>
-            <rect x="45" y="60" width="10" height="10" fill="#111111"/>
-            <rect x="30" y="80" width="40" height="80" fill="#4caf50"/>
-            <rect x="35" y="90" width="30" height="20" fill="#388e3c"/>
-            <rect x="35" y="120" width="30" height="20" fill="#388e3c"/>
-            <rect x="30" y="160" width="15" height="30" fill="#4caf50"/>
-            <rect x="55" y="160" width="15" height="30" fill="#4caf50"/>
-        </svg>
-    </div>
+    <!-- Затемнение для фона -->
+    <div class="overlay"></div>
 
     <nav>
         <div class="logo">РУДИ</div>
         <div class="nav-menu">
-            <button class="nav-btn active" onclick="switchTab('home')">Главная</button>
-            <button class="nav-btn" onclick="switchTab('about')">О канале</button>
-            <button class="nav-btn" onclick="switchTab('media')">Медиа</button>
+            <button class="nav-btn active" onclick="switchTab('home', this)">Главная</button>
+            <button class="nav-btn" onclick="switchTab('about', this)">О канале</button>
+            <button class="nav-btn" onclick="switchTab('media', this)">Медиа</button>
         </div>
     </nav>
 
     <main>
+        <!-- Вкладка ГЛАВНАЯ -->
         <div id="home" class="page-content active">
             <div class="hero">
                 <h1>Всем привет!<br>Я <span>РУДИ</span></h1>
                 <p>Снимаю угарные видео по Minecraft. Челленджи, выживания и полный хаос. Залетай на огонек!</p>
+                
                 <div class="socials">
                     <a href="https://youtube.com/@tv_rudi?si=gmI9cu93EHYsHO7s" target="_blank" class="mc-btn btn-yt">▶ YouTube</a>
                     <a href="https://t.me/RUDI_TV1" target="_blank" class="mc-btn btn-tg">✈ Telegram</a>
+                    <a href="https://www.tiktok.com/@minecraft.__.hardcore?_r=1&_t=ZS-9BJjy5lNvnw" target="_blank" class="mc-btn btn-tt">♪ TikTok</a>
                 </div>
             </div>
         </div>
 
+        <!-- Вкладка О КАНАЛЕ -->
         <div id="about" class="page-content">
             <div class="glass-card">
                 <h2>Кто такой Руди?</h2>
@@ -407,6 +312,7 @@
             </div>
         </div>
 
+        <!-- Вкладка МЕДИА -->
         <div id="media" class="page-content">
             <div class="glass-card" style="margin-bottom: 20px;">
                 <h2>Новости и видео</h2>
@@ -430,7 +336,8 @@
     </main>
 
     <script>
-        function switchTab(tabId) {
+        // Скрипт для переключения вкладок
+        function switchTab(tabId, btnElement) {
             var contents = document.querySelectorAll('.page-content');
             for (var i = 0; i < contents.length; i++) {
                 contents[i].classList.remove('active');
@@ -442,7 +349,9 @@
             }
 
             document.getElementById(tabId).classList.add('active');
-            event.target.classList.add('active');
+            if (btnElement) {
+                btnElement.classList.add('active');
+            }
         }
     </script>
 </body>
