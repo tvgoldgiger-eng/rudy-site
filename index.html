@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta name="google-site-verification" content="WXYOVEwgX-T9wwPXEOrqahaA0H4_rtDJFyXpmjFtZdA" />
     <meta charset="UTF-8">
+    <!-- ТВОЙ КОД ПОДТВЕРЖДЕНИЯ GOOGLE -->
+    <meta name="google-site-verification" content="WXYOVEwgX-T9wwPXEOrqahaA0H4_rtDJFyXpmjFtZdA" />
+    <!-- НЕОНОВАЯ ИКОНКА САЙТА (FAVICON) -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23121212'/%3E%3Ctext x='50' y='55' font-family='Arial, sans-serif' font-weight='bold' font-size='70' fill='%2300f2fe' text-anchor='middle' dominant-baseline='middle'%3ER%3C/text%3E%3C/svg%3E">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Руди | Официальный сайт</title>
+    <title>RUDI | Официальный сайт</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
         /* БАЗОВЫЕ НАСТРОЙКИ */
@@ -204,7 +208,6 @@
             background: rgba(0, 242, 254, 0.05);
         }
 
-        /* Стиль для карточки соцсетей */
         .nav-card.socials-card:hover {
             border-color: #fe0979;
             box-shadow: 0 10px 25px rgba(254, 9, 121, 0.2);
@@ -322,7 +325,75 @@
         .glass-card p { font-size: 16px; line-height: 1.8; color: #cccccc; margin-bottom: 15px; }
         .glass-card strong { color: #fe0979; }
 
-        /* КАРТОЧКИ НОВОСТЕЙ */
+        /* --- ВКЛАДКА О КАНАЛЕ --- */
+        .about-header {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .about-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: #1a1a1a;
+            border: 3px solid #00f2fe;
+            box-shadow: 0 0 20px rgba(0, 242, 254, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .about-avatar svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .about-header-text h2 {
+            font-family: 'Press Start 2P', cursive;
+            color: #ffffff;
+            font-size: 24px;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px rgba(255,255,255,0.3);
+        }
+        
+        .about-header-text p {
+            color: #00f2fe;
+            font-weight: bold;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .feature-item {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .feature-item:hover {
+            background: rgba(0, 242, 254, 0.05);
+            border-color: #00f2fe;
+        }
+
+        .feature-icon { font-size: 30px; margin-bottom: 10px; }
+        .feature-item h4 { color: #fe0979; margin-bottom: 5px; font-size: 16px; }
+        .feature-item p { font-size: 13px; color: #aaaaaa; margin-bottom: 0; }
+
+        /* --- ВКЛАДКА МЕДИА (ОБНОВЛЕННАЯ) --- */
         .media-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 20px; }
         .media-card {
             background: rgba(18, 18, 18, 0.85); border: 1px solid rgba(255, 255, 255, 0.03);
@@ -330,8 +401,82 @@
         }
         .media-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(254, 9, 121, 0.15); border-left-color: #00f2fe; }
         .media-card h3 { margin-bottom: 10px; color: #ffffff; font-size: 18px; }
-        .media-card p { color: #aaaaaa; font-size: 14px; line-height: 1.5; }
+        .media-card p { color: #aaaaaa; font-size: 14px; line-height: 1.5; margin-bottom: 0;}
         .media-card .views { color: #00f2fe; font-weight: bold; }
+
+        /* Блок "Свежак" */
+        .latest-video-block {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: linear-gradient(135deg, rgba(254,9,121,0.1) 0%, rgba(0,242,254,0.1) 100%);
+            border: 1px solid rgba(0, 242, 254, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        .latest-video-icon {
+            width: 80px; height: 80px;
+            background: #ff0000;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            box-shadow: 0 0 20px rgba(255,0,0,0.5);
+            flex-shrink: 0;
+        }
+        .latest-video-text { flex: 1; min-width: 200px; }
+        .latest-video-text h3 { font-family: 'Press Start 2P', cursive; font-size: 16px; margin-bottom: 10px; color: #fff; }
+        .latest-video-text p { font-size: 14px; color: #ccc; margin-bottom: 10px; }
+        .btn-latest-video {
+            display: inline-block; background: #ff0000; color: #fff; padding: 8px 16px;
+            text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 14px; transition: 0.3s;
+        }
+        .btn-latest-video:hover { background: #cc0000; }
+
+        /* Факты обо мне */
+        .facts-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        .fact-chip {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            color: #ddd;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .fact-chip span { font-weight: bold; color: #00f2fe; }
+
+        /* Планы на будущее */
+        .roadmap-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .roadmap-item {
+            display: flex;
+            gap: 15px;
+            background: rgba(255,255,255,0.03);
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 3px solid #00f2fe;
+        }
+        .roadmap-date {
+            font-weight: bold;
+            color: #fe0979;
+            min-width: 100px;
+        }
+        .roadmap-text h4 { margin-bottom: 5px; color: #fff; }
+        .roadmap-text p { font-size: 13px; color: #aaa; margin-bottom: 0; }
 
         /* ВКЛАДКА СЕРВЕРА */
         .server-hero { text-align: center; margin-bottom: 30px; }
@@ -381,13 +526,19 @@
             .stats-container { flex-direction: column; gap: 20px; padding: 20px; }
             .nav-cards-container { grid-template-columns: 1fr; }
             .modal-buttons { flex-direction: column; }
+            
+            .about-header { flex-direction: column; text-align: center; gap: 15px; }
+            .about-header-text h2 { font-size: 20px; }
+
+            .latest-video-block { flex-direction: column; text-align: center; }
+            .roadmap-item { flex-direction: column; gap: 5px; }
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo">РУДИ</div>
+        <div class="logo">RUDI</div>
         <div class="nav-menu">
             <button class="nav-btn active" onclick="switchTab('home', this)">Главная</button>
             <button class="nav-btn" onclick="switchTab('server', this)">Наш Сервер</button>
@@ -400,7 +551,7 @@
         <!-- ВКЛАДКА: ГЛАВНАЯ -->
         <div id="home" class="page-content active">
             <div class="hero">
-                <h1>Всем привет!<br>Я <span>РУДИ</span></h1>
+                <h1>Всем привет!<br>Я <span>RUDI</span></h1>
                 <p>Снимаю угарные видео по Minecraft. Челленджи, выживания и полный хаос. Залетай на огонек!</p>
                 
                 <div class="socials">
@@ -439,7 +590,6 @@
                         <p>Новости канала, анонсы роликов и медиа-материалы.</p>
                     </div>
 
-                    <!-- Измененная карточка, теперь она открывает окно выбора -->
                     <div class="nav-card socials-card" onclick="openSocialModal()">
                         <div class="card-icon">🔥</div>
                         <h3>Мои соцсети</h3>
@@ -498,33 +648,111 @@
         <!-- ВКЛАДКА: О КАНАЛЕ -->
         <div id="about" class="page-content">
             <div class="glass-card">
-                <h2>Кто такой Руди?</h2>
-                <p>Привет, меня зовут <strong>Даниил</strong>, но в сети ты знаешь меня как <strong>Руди</strong>. Я обычный пацан, который обожает Майнкрафт и решил начать снимать видосы.</p>
+                
+                <!-- Шапка профиля -->
+                <div class="about-header">
+                    <div class="about-avatar">
+                        <!-- ТВОЯ ПЕРВАЯ КРУГЛАЯ АВАТАРКА (ВОЗВРАЩЕНА) -->
+                        <svg viewBox="0 0 100 100">
+                            <rect x="20" y="10" width="60" height="50" fill="#f1c27d"/> <!-- Лицо -->
+                            <rect x="20" y="5" width="60" height="15" fill="#4e342e"/> <!-- Волосы -->
+                            <rect x="20" y="10" width="60" height="6" fill="#b71c1c"/> <!-- Повязка -->
+                            <rect x="30" y="35" width="10" height="6" fill="#fff"/> <!-- Глаз -->
+                            <rect x="60" y="35" width="10" height="6" fill="#fff"/> <!-- Глаз -->
+                            <rect x="32" y="35" width="6" height="6" fill="#111"/> <!-- Зрачок -->
+                            <rect x="62" y="35" width="6" height="6" fill="#111"/> <!-- Зрачок -->
+                            <rect x="10" y="60" width="80" height="40" fill="#cc0000"/> <!-- Рубашка -->
+                            <path d="M10,60 h15 v40 h-15 Z M35,60 h15 v40 h-15 Z M60,60 h15 v40 h-15 Z M10,70 h80 v10 h-80 Z M10,90 h80 v10 h-80 Z" fill="#111"/> <!-- Клетка -->
+                            <rect x="30" y="85" width="40" height="15" fill="#111"/> <!-- Низ -->
+                        </svg>
+                    </div>
+                    <div class="about-header-text">
+                        <h2>Привет, я RUDI</h2>
+                        <p>Создатель контента и главный по угару</p>
+                    </div>
+                </div>
+
+                <p>Всем привет, меня знают, вы меня знаете как <strong>RUDI</strong>, который обожает Minecraft и решил начать снимать видосы. Мой путь начался не так давно, но я уже успел собрать крутое комьюнити.</p>
                 <p>На моем канале ты не найдешь скучных прохождений. Я делаю ставку на драйв, челленджи и приколы. Мы с моим напарником (ИИ по имени Дан) постоянно придумываем безумные сценарии: от выживания в Аду до ковчегов во время потопа.</p>
                 <p>Я верю, что контент должен приносить кайф. Поэтому если тебе нравится смотреть, как кто-то страдает от невидимых криперов или строит базу на лаве — тебе точно ко мне!</p>
+
+                <!-- Что на канале -->
+                <h2 style="margin-top: 40px; margin-bottom: 20px;">Что тут происходит?</h2>
+                <div class="about-features">
+                    <div class="feature-item">
+                        <div class="feature-icon">🎢</div>
+                        <h4>Челленджи</h4>
+                        <p>Постоянные испытания с модами и датапаками.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">💀</div>
+                        <h4>Хардкор</h4>
+                        <p>Одна жизнь, никаких ошибок. Настоящий пот.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🌍</div>
+                        <h4>Свой Сервер</h4>
+                        <p>Уютное выживание с приватами и адекватными игроками.</p>
+                    </div>
+                </div>
+
             </div>
         </div>
 
-        <!-- ВКЛАДКА: МЕДИА -->
+        <!-- ВКЛАДКА: МЕДИА (ОБНОВЛЕННАЯ) -->
         <div id="media" class="page-content">
-            <div class="glass-card" style="margin-bottom: 20px;">
-                <h2>Новости и видео</h2>
-                <p>Тут я буду выкладывать анонсы новых роликов и важные события с канала.</p>
-            </div>
-            <div class="media-grid">
-                <div class="media-card">
-                    <h3>Выживание в Аду</h3>
-                    <p>Скоро на канале! Начинаю с нуля в Аду, качаю незерит и ищу бастионы. Будет жарко.</p>
-                </div>
-                <div class="media-card">
-                    <h3>Прикол с жителями</h3>
-                    <p>Этот Shorts уже взорвал TikTok (<span class="views">1.3м+ просмотров</span>). Если не видел — обязательно глянь на канале.</p>
-                </div>
-                <div class="media-card">
-                    <h3>Стрим</h3>
-                    <p>Планирую прямой эфир. Будем строить деревню и общаться. Следи за анонсами в Telegram.</p>
+            
+            <!-- Свежак на канале -->
+            <div class="latest-video-block">
+                <div class="latest-video-icon">▶</div>
+                <div class="latest-video-text">
+                    <h3>Свежак на канале!</h3>
+                    <p>Залетай смотреть мой последний ролик. Там я творю полный беспредел в Майнкрафте.</p>
+                    <!-- Сюда вставь ссылку на последнее видео -->
+                    <a href="https://youtube.com/@tv_rudi?si=gmI9cu93EHYsHO7s" target="_blank" class="btn-latest-video">СМОТРЕТЬ ВИДЕО</a>
                 </div>
             </div>
+
+            <!-- Факты обо мне -->
+            <div class="glass-card">
+                <h2>Факты обо мне</h2>
+                <div class="facts-container">
+                    <div class="fact-chip">🎮 Любимый режим: <span>Хардкор</span></div>
+                    <div class="fact-chip">💀 Любимый моб: <span>Крипер</span></div>
+                    <div class="fact-chip">🍎 Любимая еда: <span>Золотое яблоко</span></div>
+                    <div class="fact-chip">⛏️ Любимый инструмент: <span>Алмазная кирка</span></div>
+                    <div class="fact-chip">🌍 Мой сервер: <span>Всегда онлайн</span></div>
+                </div>
+            </div>
+
+            <!-- Планы на будущее -->
+            <div class="glass-card">
+                <h2>Что будет дальше?</h2>
+                <div class="roadmap-container">
+                    <div class="roadmap-item">
+                        <div class="roadmap-date">Скоро</div>
+                        <div class="roadmap-text">
+                            <h4>Выживание в Аду</h4>
+                            <p>Начинаю с нуля, качаю незерит и ищу бастионы. Будет жарко.</p>
+                        </div>
+                    </div>
+                    <div class="roadmap-item">
+                        <div class="roadmap-date">В разработке</div>
+                        <div class="roadmap-text">
+                            <h4>Minecraft, но все мобы невидимы</h4>
+                            <p>Жуткий челлендж, где врагов не видно, а слышно только их шаги.</p>
+                        </div>
+                    </div>
+                    <div class="roadmap-item">
+                        <div class="roadmap-date">В ближайшем будущем</div>
+                        <div class="roadmap-text">
+                            <h4>Стрим с подписчиками</h4>
+                            <p>Соберемся на нашем сервере огромной толпой и устроим хаос.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </main>
 
@@ -579,7 +807,6 @@
         }
 
         function closeSocialModal(event) {
-            // Закрываем, если кликнули на фон или крестик
             if (event && event.target !== event.currentTarget && !event.target.classList.contains('close-btn')) return;
             document.getElementById('social-modal').classList.remove('active');
         }
