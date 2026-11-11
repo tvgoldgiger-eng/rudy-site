@@ -6,50 +6,67 @@
     <title>Руди | Официальный сайт</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
-        /* --- БАЗА --- */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        /* БАЗОВЫЕ СТИЛИ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             background-color: #0f0f0f;
-            color: #fff;
+            color: #ffffff;
             font-family: 'Montserrat', sans-serif;
             overflow-x: hidden;
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
         }
 
-        /* --- ЖИВОЙ ФОН (ШАХТА) --- */
-        .bg-container {
+        /* ФОН (ШАХТА) */
+        .bg-cave {
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             z-index: -1;
             background: radial-gradient(circle at center, #2a2a2a 0%, #0a0a0a 100%);
-            overflow: hidden;
-        }
-        
-        /* Имитация камня в Майнкрафте */
-        .cave-texture {
-            position: absolute; width: 100%; height: 100%;
-            background-image: 
-                linear-gradient(rgba(0,0,0,0.6) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0,0,0,0.6) 1px, transparent 1px);
-            background-size: 50px 50px;
-            opacity: 0.3;
         }
 
-        /* Мерцающие факелы */
+        .bg-grid {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0,0,0,0.4) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,0,0,0.4) 1px, transparent 1px);
+            background-size: 40px 40px;
+            opacity: 0.5;
+        }
+
+        /* ФАКЕЛЫ */
         .torch {
             position: absolute;
-            width: 10px; height: 40px;
+            width: 12px;
+            height: 40px;
             background: #5d4037;
             box-shadow: 0 -20px 30px #ff9800, 0 -40px 60px #ff5722;
             animation: flicker 1.5s infinite alternate;
         }
+
         .torch::before {
-            content: ''; position: absolute; top: -15px; left: -5px;
-            width: 20px; height: 20px; background: #ffeb3b; border-radius: 50%;
-            filter: blur(5px);
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: -4px;
+            width: 20px;
+            height: 20px;
+            background: #ffeb3b;
+            border-radius: 50%;
+            filter: blur(4px);
         }
+
         .torch-1 { top: 20%; left: 10%; }
         .torch-2 { top: 60%; right: 15%; }
         .torch-3 { bottom: 10%; left: 30%; }
@@ -59,10 +76,10 @@
             100% { opacity: 1; box-shadow: 0 -25px 40px #ffb300, 0 -50px 80px #ff5722; }
         }
 
-        /* --- НАВИГАЦИЯ --- */
+        /* НАВИГАЦИЯ */
         nav {
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(15px);
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(10px);
             border-bottom: 2px solid rgba(76, 175, 80, 0.3);
             padding: 15px 5%;
             display: flex;
@@ -70,135 +87,253 @@
             align-items: center;
             position: fixed;
             width: 100%;
-            top: 0; z-index: 100;
+            top: 0;
+            z-index: 100;
         }
+
         .logo {
             font-family: 'Press Start 2P', cursive;
-            font-size: 20px; color: #4CAF50;
+            font-size: 22px;
+            color: #4CAF50;
             text-shadow: 2px 2px 0 #000, 0 0 10px rgba(76, 175, 80, 0.5);
         }
-        .nav-tabs { display: flex; gap: 10px; }
-        .tab-btn {
-            background: transparent; border: none; color: #aaa;
-            font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 16px;
-            padding: 10px 20px; cursor: pointer; border-radius: 8px;
-            transition: 0.3s; text-transform: uppercase;
-        }
-        .tab-btn:hover { color: #fff; background: rgba(255,255,255,0.1); }
-        .tab-btn.active { color: #fff; background: rgba(76, 175, 80, 0.2); border-bottom: 2px solid #4CAF50; }
 
-        /* --- КОНТЕНТ --- */
+        .nav-menu {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: none;
+            color: #aaaaaa;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            padding: 8px 16px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .nav-btn:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-btn.active {
+            color: #ffffff;
+            background: rgba(76, 175, 80, 0.2);
+            border-bottom: 2px solid #4CAF50;
+        }
+
+        /* КОНТЕНТ */
         main {
-            flex: 1; margin-top: 80px;
-            position: relative; z-index: 10;
-            display: flex; justify-content: center;
+            flex: 1;
+            margin-top: 80px;
+            position: relative;
+            z-index: 10;
+            display: flex;
+            justify-content: center;
         }
-        .tab-content {
-            display: none; width: 100%; max-width: 1200px; padding: 40px 20px;
-            animation: fadeIn 0.5s ease-out forwards;
+
+        .page-content {
+            display: none;
+            width: 100%;
+            max-width: 1100px;
+            padding: 40px 20px;
+            animation: fadeIn 0.4s ease-out forwards;
         }
-        .tab-content.active { display: block; }
+
+        .page-content.active {
+            display: block;
+        }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* --- ГЛАВНАЯ ВКЛАДКА --- */
-        .hero-section {
-            display: flex; flex-direction: column; align-items: center;
-            text-align: center; justify-content: center; height: 100%;
+        /* ГЛАВНАЯ */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            justify-content: center;
+            min-height: 60vh;
         }
-        .hero-title {
+
+        .hero h1 {
             font-family: 'Press Start 2P', cursive;
-            font-size: 3rem; line-height: 1.3;
+            font-size: 38px;
+            line-height: 1.4;
             margin-bottom: 20px;
-            text-shadow: 4px 4px 0 #000;
+            text-shadow: 4px 4px 0 #000000;
         }
-        .hero-title span { color: #ff4444; }
-        .hero-subtitle { font-size: 1.2rem; color: #ccc; margin-bottom: 40px; max-width: 600px; }
 
-        /* Кнопки соцсетей */
-        .social-buttons { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
+        .hero h1 span {
+            color: #ff4444;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #cccccc;
+            margin-bottom: 40px;
+            max-width: 600px;
+            line-height: 1.6;
+        }
+
+        /* КНОПКИ */
+        .socials {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
         .mc-btn {
-            display: flex; align-items: center; gap: 10px;
-            padding: 15px 30px; text-decoration: none; font-weight: 900; font-size: 18px;
-            border-radius: 8px; transition: 0.2s; color: #fff; text-transform: uppercase;
-            border: 2px solid #000; position: relative;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 32px;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 18px;
+            border-radius: 8px;
+            color: #ffffff;
+            text-transform: uppercase;
+            border: 2px solid #000000;
+            transition: transform 0.1s ease, box-shadow 0.1s ease;
         }
-        /* Эффект нажатия как в Майне */
-        .mc-btn:active { transform: translateY(4px); box-shadow: none !important; }
-        
-        .btn-yt { background: #ff0000; box-shadow: 0 6px 0 #b30000; border-color: #ff4d4d; }
-        .btn-tg { background: #0088cc; box-shadow: 0 6px 0 #005580; border-color: #33aaff; }
 
-        /* --- ВКЛАДКА О КАНАЛЕ --- */
+        .mc-btn:active {
+            transform: translateY(4px);
+            box-shadow: none !important;
+        }
+
+        .btn-yt {
+            background: #ff0000;
+            box-shadow: 0 6px 0 #b30000;
+            border-color: #ff4d4d;
+        }
+
+        .btn-tg {
+            background: #0088cc;
+            box-shadow: 0 6px 0 #005580;
+            border-color: #33aaff;
+        }
+
+        /* СТЕКЛЯННЫЕ КАРТОЧКИ */
         .glass-card {
-            background: rgba(20, 20, 20, 0.8);
-            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-            border: 2px solid rgba(255,255,255,0.1); border-radius: 15px;
-            padding: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            background: rgba(20, 20, 20, 0.85);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
         }
-        .glass-card h2 { font-family: 'Press Start 2P', cursive; color: #4CAF50; margin-bottom: 20px; font-size: 1.5rem; }
-        .glass-card p { font-size: 1.1rem; line-height: 1.8; color: #ddd; margin-bottom: 15px; }
 
-        /* --- ВКЛАДКА МЕДИА --- */
-        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .glass-card h2 {
+            font-family: 'Press Start 2P', cursive;
+            color: #4CAF50;
+            margin-bottom: 25px;
+            font-size: 20px;
+        }
+
+        .glass-card p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #dddddd;
+            margin-bottom: 15px;
+        }
+
+        /* МЕДИА */
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
         .media-card {
-            background: rgba(30,30,30,0.9); border-left: 5px solid #ff4444;
-            border-radius: 10px; padding: 20px; transition: 0.3s;
+            background: rgba(30, 30, 30, 0.9);
+            border-left: 5px solid #ff4444;
+            border-radius: 10px;
+            padding: 25px;
+            transition: transform 0.3s ease, background 0.3s ease;
         }
-        .media-card:hover { transform: translateY(-5px); background: rgba(40,40,40,0.9); box-shadow: 0 10px 20px rgba(255,68,68,0.2); }
-        .media-card h3 { margin-bottom: 10px; color: #fff; }
-        .media-card p { color: #aaa; font-size: 0.95rem; line-height: 1.5; }
 
-        /* --- 3D ПЕРСОНАЖИ (SVG) --- */
-        .characters-container {
-            position: absolute; bottom: 0; width: 100%;
-            display: flex; justify-content: space-around; align-items: flex-end;
-            pointer-events: none; z-index: 5; padding: 0 5%;
+        .media-card:hover {
+            transform: translateY(-5px);
+            background: rgba(45, 45, 45, 0.9);
+            box-shadow: 0 10px 20px rgba(255, 68, 68, 0.2);
         }
-        .char-svg {
-            width: 150px; height: 250px;
+
+        .media-card h3 {
+            margin-bottom: 10px;
+            color: #ffffff;
+            font-size: 18px;
+        }
+
+        .media-card p {
+            color: #aaaaaa;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        /* ПЕРСОНАЖИ (SVG) */
+        .chars {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-end;
+            pointer-events: none;
+            z-index: 5;
+            padding: 0 5%;
+        }
+
+        .char {
+            width: 140px;
+            height: 230px;
             filter: drop-shadow(5px 5px 10px rgba(0,0,0,0.8));
             animation: float 3s ease-in-out infinite;
         }
-        .char-svg:nth-child(2) { width: 120px; height: 200px; animation-delay: 1s; }
-        .char-svg:nth-child(3) { width: 130px; height: 220px; animation-delay: 2s; }
+
+        .char:nth-child(2) { width: 110px; height: 190px; animation-delay: 1s; }
+        .char:nth-child(3) { width: 120px; height: 200px; animation-delay: 2s; }
 
         @keyframes float {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-15px); }
         }
 
-        /* Мобильная адаптация */
+        /* МОБИЛЬНАЯ АДАПТАЦИЯ */
         @media (max-width: 768px) {
-            .hero-title { font-size: 2rem; }
-            .nav-tabs { gap: 5px; }
-            .tab-btn { padding: 8px 10px; font-size: 12px; }
-            .characters-container { display: none; } /* Прячем персов на телефоне, чтобы не мешали */
+            .hero h1 { font-size: 24px; }
+            .nav-btn { padding: 6px 10px; font-size: 12px; }
             .glass-card { padding: 20px; }
+            .chars { display: none; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ФОН -->
-    <div class="bg-container">
-        <div class="cave-texture"></div>
+    <div class="bg-cave">
+        <div class="bg-grid"></div>
         <div class="torch torch-1"></div>
         <div class="torch torch-2"></div>
         <div class="torch torch-3"></div>
     </div>
 
-    <!-- 3D ПЕРСОНАЖИ (Отрисованы кодом) -->
-    <div class="characters-container">
-        <!-- Зомби -->
-        <svg class="char-svg" viewBox="0 0 100 200">
+    <div class="chars">
+        <svg class="char" viewBox="0 0 100 200">
             <rect x="20" y="20" width="60" height="60" fill="#4e7a3d"/>
-            <rect x="30" y="40" width="15" height="10" fill="#111"/>
-            <rect x="55" y="40" width="15" height="10" fill="#111"/>
-            <rect x="35" y="65" width="30" height="5" fill="#111"/>
+            <rect x="30" y="40" width="15" height="10" fill="#111111"/>
+            <rect x="55" y="40" width="15" height="10" fill="#111111"/>
+            <rect x="35" y="65" width="30" height="5" fill="#111111"/>
             <rect x="25" y="80" width="50" height="70" fill="#0088cc"/>
             <rect x="5" y="80" width="20" height="60" fill="#4e7a3d"/>
             <rect x="75" y="80" width="20" height="60" fill="#4e7a3d"/>
@@ -206,43 +341,34 @@
             <rect x="55" y="150" width="15" height="40" fill="#1e3d88"/>
         </svg>
 
-        <!-- Твой скин (Руди) с киркой -->
-        <svg class="char-svg" viewBox="0 0 100 200">
+        <svg class="char" viewBox="0 0 100 200">
             <rect x="25" y="10" width="50" height="50" fill="#f1c27d"/>
             <rect x="25" y="5" width="50" height="15" fill="#4e342e"/>
             <rect x="25" y="10" width="50" height="6" fill="#b71c1c"/>
-            <rect x="32" y="30" width="10" height="6" fill="#fff"/>
-            <rect x="58" y="30" width="10" height="6" fill="#fff"/>
-            <rect x="34" y="30" width="6" height="6" fill="#111"/>
-            <rect x="60" y="30" width="6" height="6" fill="#111"/>
-            
-            <!-- Клетчатая рубашка -->
+            <rect x="32" y="30" width="10" height="6" fill="#ffffff"/>
+            <rect x="58" y="30" width="10" height="6" fill="#ffffff"/>
+            <rect x="34" y="30" width="6" height="6" fill="#111111"/>
+            <rect x="60" y="30" width="6" height="6" fill="#111111"/>
             <rect x="25" y="60" width="50" height="70" fill="#cc0000"/>
-            <path d="M25,60 h10 v70 h-10 Z M45,60 h10 v70 h-10 Z M65,60 h10 v70 h-10 Z M25,70 h50 v10 h-50 Z M25,90 h50 v10 h-50 Z M25,110 h50 v10 h-50 Z" fill="#111"/>
-            
+            <path d="M25,60 h10 v70 h-10 Z M45,60 h10 v70 h-10 Z M65,60 h10 v70 h-10 Z M25,70 h50 v10 h-50 Z M25,90 h50 v10 h-50 Z M25,110 h50 v10 h-50 Z" fill="#111111"/>
             <rect x="5" y="60" width="20" height="60" fill="#cc0000"/>
             <rect x="5" y="60" width="20" height="60" fill="rgba(0,0,0,0.5)"/>
             <rect x="75" y="60" width="20" height="60" fill="#cc0000"/>
             <rect x="75" y="60" width="20" height="60" fill="rgba(0,0,0,0.5)"/>
-            
-            <!-- Штаны -->
-            <rect x="30" y="130" width="15" height="60" fill="#111"/>
-            <rect x="55" y="130" width="15" height="60" fill="#111"/>
+            <rect x="30" y="130" width="15" height="60" fill="#111111"/>
+            <rect x="55" y="130" width="15" height="60" fill="#111111"/>
             <rect x="30" y="180" width="15" height="10" fill="#e0e0e0"/>
             <rect x="55" y="180" width="15" height="10" fill="#e0e0e0"/>
-
-            <!-- Кирка в руке -->
             <rect x="85" y="40" width="6" height="80" fill="#8d6e63" transform="rotate(20 85 40)"/>
             <path d="M70,40 Q85,20 110,40 L110,50 Q85,30 70,50 Z" fill="#90a4ae"/>
         </svg>
 
-        <!-- Крипер -->
-        <svg class="char-svg" viewBox="0 0 100 200">
+        <svg class="char" viewBox="0 0 100 200">
             <rect x="20" y="20" width="60" height="60" fill="#4caf50"/>
-            <rect x="30" y="40" width="15" height="15" fill="#111"/>
-            <rect x="55" y="40" width="15" height="15" fill="#111"/>
-            <rect x="40" y="55" width="20" height="15" fill="#111"/>
-            <rect x="45" y="60" width="10" height="10" fill="#111"/>
+            <rect x="30" y="40" width="15" height="15" fill="#111111"/>
+            <rect x="55" y="40" width="15" height="15" fill="#111111"/>
+            <rect x="40" y="55" width="20" height="15" fill="#111111"/>
+            <rect x="45" y="60" width="10" height="10" fill="#111111"/>
             <rect x="30" y="80" width="40" height="80" fill="#4caf50"/>
             <rect x="35" y="90" width="30" height="20" fill="#388e3c"/>
             <rect x="35" y="120" width="30" height="20" fill="#388e3c"/>
@@ -251,37 +377,28 @@
         </svg>
     </div>
 
-    <!-- НАВИГАЦИЯ -->
     <nav>
         <div class="logo">РУДИ</div>
-        <div class="nav-tabs">
-            <button class="tab-btn active" onclick="openTab('home')">Главная</button>
-            <button class="tab-btn" onclick="openTab('about')">О канале</button>
-            <button class="tab-btn" onclick="openTab('media')">Медиа</button>
+        <div class="nav-menu">
+            <button class="nav-btn active" onclick="switchTab('home')">Главная</button>
+            <button class="nav-btn" onclick="switchTab('about')">О канале</button>
+            <button class="nav-btn" onclick="switchTab('media')">Медиа</button>
         </div>
     </nav>
 
-    <!-- КОНТЕНТ -->
     <main>
-        <!-- ВКЛАДКА: ГЛАВНАЯ -->
-        <div id="home" class="tab-content active">
-            <div class="hero-section">
-                <h1 class="hero-title">Всем привет!<br>Я <span>РУДИ</span></h1>
-                <p class="hero-subtitle">Снимаю угарные видео по Minecraft. Челленджи, выживания и полный хаос. Залетай на огонек!</p>
-                <div class="social-buttons">
-                    <!-- ТВОИ ССЫЛКИ -->
-                    <a href="https://youtube.com/@tv_rudi?si=gmI9cu93EHYsHO7s" target="_blank" class="mc-btn btn-yt">
-                        ▶ YouTube
-                    </a>
-                    <a href="https://t.me/RUDI_TV1" target="_blank" class="mc-btn btn-tg">
-                        ✈ Telegram
-                    </a>
+        <div id="home" class="page-content active">
+            <div class="hero">
+                <h1>Всем привет!<br>Я <span>РУДИ</span></h1>
+                <p>Снимаю угарные видео по Minecraft. Челленджи, выживания и полный хаос. Залетай на огонек!</p>
+                <div class="socials">
+                    <a href="https://youtube.com/@tv_rudi?si=gmI9cu93EHYsHO7s" target="_blank" class="mc-btn btn-yt">▶ YouTube</a>
+                    <a href="https://t.me/RUDI_TV1" target="_blank" class="mc-btn btn-tg">✈ Telegram</a>
                 </div>
             </div>
         </div>
 
-        <!-- ВКЛАДКА: О КАНАЛЕ -->
-        <div id="about" class="tab-content">
+        <div id="about" class="page-content">
             <div class="glass-card">
                 <h2>Кто такой Руди?</h2>
                 <p>Привет, меня зовут Данил, но в сети ты знаешь меня как <strong>Руди</strong>. Я обычный пацан, который обожает Майнкрафт и решил начать снимать видосы.</p>
@@ -290,13 +407,12 @@
             </div>
         </div>
 
-        <!-- ВКЛАДКА: МЕДИА -->
-        <div id="media" class="tab-content">
+        <div id="media" class="page-content">
             <div class="glass-card" style="margin-bottom: 20px;">
-                <h2>Последние новости и видео</h2>
-                <p style="margin-bottom: 0;">Тут я буду выкладывать анонсы новых роликов и важные события с канала.</p>
+                <h2>Новости и видео</h2>
+                <p>Тут я буду выкладывать анонсы новых роликов и важные события с канала.</p>
             </div>
-            <div class="grid-container">
+            <div class="media-grid">
                 <div class="media-card">
                     <h3>Выживание в Аду</h3>
                     <p>Скоро на канале! Начинаю с нуля в Аду, качаю незерит и ищу бастионы. Будет жарко.</p>
@@ -314,18 +430,19 @@
     </main>
 
     <script>
-        // Логика переключения вкладок
-        function openTab(tabId) {
-            // Убираем active со всех вкладок и кнопок
-            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            
-            // Добавляем active нужной вкладке
+        function switchTab(tabId) {
+            var contents = document.querySelectorAll('.page-content');
+            for (var i = 0; i < contents.length; i++) {
+                contents[i].classList.remove('active');
+            }
+
+            var buttons = document.querySelectorAll('.nav-btn');
+            for (var i = 0; i < buttons.length; i++) {
+                buttons[i].classList.remove('active');
+            }
+
             document.getElementById(tabId).classList.add('active');
-            
-            // Находим нужную кнопку и делаем её активной
-            const btn = Array.from(document.querySelectorAll('.tab-btn')).find(b => b.innerText.toLowerCase().includes(tabId === 'home' ? 'главная' : (tabId === 'about' ? 'канале' : 'медиа')));
-            if(btn) btn.classList.add('active');
+            event.target.classList.add('active');
         }
     </script>
 </body>
