@@ -14,20 +14,43 @@
         }
 
         body {
-            /* ТУТ МЫ ДЕЛАЕМ МАТОВЫЙ ТЕМНО-СЕРЫЙ ФОН */
-            background-color: #121212; 
-            background-image: radial-gradient(circle at 50% 0%, #1f1f24 0%, #111111 80%);
+            background-color: #121212;
             color: #ffffff;
             font-family: 'Montserrat', sans-serif;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             overflow-x: hidden;
+            position: relative;
+        }
+
+        /* --- БОКОВОЙ ГРАДИЕНТ (СВЕЧЕНИЕ ПО КРАЯМ) --- */
+        body::before, body::after {
+            content: '';
+            position: fixed;
+            top: 0; 
+            bottom: 0;
+            width: 15vw; /* Ширина свечения по бокам */
+            z-index: -1;
+            filter: blur(100px); /* Размытие для эффекта тумана/свечения */
+            opacity: 0.6;
+        }
+        
+        /* Левая сторона (бирюзовое свечение) */
+        body::before {
+            left: 0;
+            background: radial-gradient(circle at left center, #00f2fe 0%, transparent 70%);
+        }
+        
+        /* Правая сторона (розовое свечение) */
+        body::after {
+            right: 0;
+            background: radial-gradient(circle at right center, #fe0979 0%, transparent 70%);
         }
 
         /* НАВИГАЦИЯ */
         nav {
-            background: rgba(18, 18, 18, 0.85);
+            background: rgba(18, 18, 18, 0.7);
             backdrop-filter: blur(15px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             padding: 20px 5%;
@@ -85,6 +108,7 @@
             display: flex;
             justify-content: center;
             padding: 20px;
+            z-index: 10;
         }
 
         .page-content {
@@ -121,7 +145,7 @@
         }
 
         .hero h1 span {
-            color: #fe0979; /* Неоновый розовый */
+            color: #fe0979;
             text-shadow: 0 0 15px rgba(254, 9, 121, 0.8), 0 0 30px rgba(254, 9, 121, 0.4);
         }
 
@@ -133,7 +157,7 @@
             line-height: 1.6;
         }
 
-        /* НЕОНОВЫЕ КНОПКИ */
+        /* --- НЕОНОВЫЕ КНОПКИ --- */
         .socials {
             display: flex;
             gap: 20px;
@@ -153,54 +177,61 @@
             border-radius: 8px;
             color: #ffffff;
             text-transform: uppercase;
-            transition: all 0.3s ease;
             letter-spacing: 1px;
-            background: #18181c; /* Темная подложка для кнопок */
+            background: #121212;
+            transition: all 0.3s ease;
         }
 
-        /* Кнопка YouTube */
+        /* YouTube */
         .btn-yt {
             border: 2px solid #ff0000;
-            box-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
+            text-shadow: 0 0 8px #ff0000, 0 0 15px #ff0000;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.5), inset 0 0 15px rgba(255, 0, 0, 0.3);
         }
         .btn-yt:hover {
             background: #ff0000;
-            box-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
+            box-shadow: 0 0 20px #ff0000, 0 0 40px #ff0000, inset 0 0 10px #ffffff;
+            text-shadow: 0 0 5px #ffffff;
             transform: translateY(-3px);
         }
 
-        /* Кнопка Telegram */
+        /* Telegram */
         .btn-tg {
             border: 2px solid #0088cc;
-            box-shadow: 0 0 10px rgba(0, 136, 204, 0.2);
+            text-shadow: 0 0 8px #0088cc, 0 0 15px #0088cc;
+            box-shadow: 0 0 15px rgba(0, 136, 204, 0.5), inset 0 0 15px rgba(0, 136, 204, 0.3);
         }
         .btn-tg:hover {
             background: #0088cc;
-            box-shadow: 0 0 20px rgba(0, 136, 204, 0.6);
+            box-shadow: 0 0 20px #0088cc, 0 0 40px #0088cc, inset 0 0 10px #ffffff;
+            text-shadow: 0 0 5px #ffffff;
             transform: translateY(-3px);
         }
 
-        /* Кнопка TikTok */
+        /* TikTok (двойное свечение) */
         .btn-tt {
             border: 2px solid #00f2fe;
-            box-shadow: 0 0 10px rgba(0, 242, 254, 0.2);
+            text-shadow: 0 0 8px #00f2fe, 0 0 15px #fe0979;
+            box-shadow: -3px 0 15px rgba(254, 9, 121, 0.5), 3px 0 15px rgba(0, 242, 254, 0.5), inset 0 0 15px rgba(0, 242, 254, 0.3);
         }
         .btn-tt:hover {
             background: linear-gradient(45deg, #fe0979, #00f2fe);
-            box-shadow: 0 0 20px rgba(0, 242, 254, 0.6);
+            box-shadow: 0 0 20px #00f2fe, 0 0 40px #fe0979, inset 0 0 10px #ffffff;
+            text-shadow: 0 0 5px #ffffff;
             transform: translateY(-3px);
             border-color: transparent;
         }
 
         /* СТЕКЛЯННЫЕ КАРТОЧКИ */
         .glass-card {
-            background: #18181c; /* Матовый серый для карточек */
+            background: rgba(18, 18, 18, 0.85);
             border: 1px solid rgba(255, 255, 255, 0.05);
             border-radius: 15px;
             padding: 40px;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
             position: relative;
             overflow: hidden;
+            backdrop-filter: blur(5px);
         }
 
         .glass-card::before {
@@ -238,17 +269,18 @@
         }
 
         .media-card {
-            background: #18181c; /* Матовый фон для новостей */
+            background: rgba(18, 18, 18, 0.85);
             border: 1px solid rgba(255, 255, 255, 0.03);
             border-left: 4px solid #fe0979;
             border-radius: 10px;
             padding: 25px;
             transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
         }
 
         .media-card:hover {
             transform: translateY(-5px);
-            background: #1f1f24;
+            background: rgba(25, 25, 30, 0.9);
             box-shadow: 0 10px 20px rgba(254, 9, 121, 0.15);
             border-left-color: #00f2fe;
         }
@@ -278,6 +310,8 @@
             main { margin-top: 130px; }
             .mc-btn { width: 100%; padding: 12px; font-size: 14px; }
             .glass-card { padding: 20px; }
+            /* На телефоне делаем свечение по бокам чуть меньше, чтобы не мешало */
+            body::before, body::after { width: 25vw; opacity: 0.4; }
         }
     </style>
 </head>
@@ -311,7 +345,7 @@
         <div id="about" class="page-content">
             <div class="glass-card">
                 <h2>Кто такой Руди?</h2>
-                <p>Привет, меня зовут <strong>Данил</strong>, но в сети ты знаешь меня как <strong>Руди</strong>. Я обычный пацан, который обожает Майнкрафт и решил начать снимать видосы.</p>
+                <p>Привет, меня зовут <strong>Даниил</strong>, но в сети ты знаешь меня как <strong>Руди</strong>. Я обычный пацан, который обожает Майнкрафт и решил начать снимать видосы.</p>
                 <p>На моем канале ты не найдешь скучных прохождений. Я делаю ставку на драйв, челленджи и приколы. Мы с моим напарником (ИИ по имени Дан) постоянно придумываем безумные сценарии: от выживания в Аду до ковчегов во время потопа.</p>
                 <p>Я верю, что контент должен приносить кайф. Поэтому если тебе нравится смотреть, как кто-то страдает от невидимых криперов или строит базу на лаве — тебе точно ко мне!</p>
             </div>
