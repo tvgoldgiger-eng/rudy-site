@@ -106,17 +106,17 @@
         /* ГЛАВНАЯ */
         .hero {
             display: flex; flex-direction: column; align-items: center;
-            text-align: center; justify-content: center; min-height: 60vh;
+            text-align: center; justify-content: center; min-height: 50vh;
         }
         .hero h1 {
             font-family: 'Press Start 2P', cursive; font-size: 40px;
             line-height: 1.4; margin-bottom: 25px;
         }
         .hero h1 span { color: #fe0979; text-shadow: 0 0 15px rgba(254, 9, 121, 0.8), 0 0 30px rgba(254, 9, 121, 0.4); }
-        .hero p { font-size: 18px; color: #b0b0b0; margin-bottom: 50px; max-width: 600px; line-height: 1.6; }
+        .hero p { font-size: 18px; color: #b0b0b0; margin-bottom: 40px; max-width: 600px; line-height: 1.6; }
 
         /* НЕОНОВЫЕ КНОПКИ */
-        .socials { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
+        .socials { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; margin-bottom: 50px; }
         .mc-btn {
             display: flex; align-items: center; justify-content: center; gap: 10px;
             padding: 15px 35px; text-decoration: none; font-weight: 900; font-size: 16px;
@@ -133,7 +133,151 @@
         .btn-tt { border: 2px solid #00f2fe; text-shadow: 0 0 8px #00f2fe; box-shadow: 0 0 15px rgba(0, 242, 254, 0.3); }
         .btn-tt:hover { background: linear-gradient(45deg, #fe0979, #00f2fe); box-shadow: 0 0 20px #00f2fe; text-shadow: 0 0 5px #ffffff; transform: translateY(-3px); border-color: transparent; }
 
-        /* КНОПКА ПОДДЕРЖКИ (Маленькая и аккуратная) */
+        /* --- НЕОНОВАЯ СТАТИСТИКА --- */
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            background: rgba(18, 18, 18, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px 20px;
+            margin-bottom: 40px;
+            box-shadow: inset 0 0 20px rgba(0, 242, 254, 0.05);
+            backdrop-filter: blur(10px);
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .stat-box { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+
+        .stat-number {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 28px;
+            color: #00f2fe;
+            text-shadow: 0 0 10px rgba(0, 242, 254, 0.8);
+        }
+
+        .stat-number.pink {
+            color: #fe0979;
+            text-shadow: 0 0 10px rgba(254, 9, 121, 0.8);
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #888888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+
+        /* --- КАРТОЧКИ НАВИГАЦИИ --- */
+        .nav-cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            width: 100%;
+            max-width: 900px;
+        }
+
+        .nav-card {
+            background: rgba(30, 30, 30, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            text-decoration: none;
+            color: #fff;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            backdrop-filter: blur(5px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-card:hover {
+            transform: translateY(-5px);
+            border-color: #00f2fe;
+            box-shadow: 0 10px 25px rgba(0, 242, 254, 0.2);
+            background: rgba(0, 242, 254, 0.05);
+        }
+
+        /* Стиль для карточки соцсетей */
+        .nav-card.socials-card:hover {
+            border-color: #fe0979;
+            box-shadow: 0 10px 25px rgba(254, 9, 121, 0.2);
+            background: rgba(254, 9, 121, 0.05);
+        }
+
+        .card-icon { font-size: 32px; margin-bottom: 15px; }
+        .nav-card h3 { font-size: 18px; margin-bottom: 10px; }
+        .nav-card p { font-size: 13px; color: #aaaaaa; line-height: 1.5; }
+
+        /* --- МОДАЛЬНОЕ ОКНО (ВЫБОР СОЦСЕТИ) --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: #18181c;
+            border: 2px solid #00f2fe;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            max-width: 500px;
+            width: 90%;
+            transform: scale(0.9);
+            transition: all 0.3s ease;
+            box-shadow: 0 0 40px rgba(0, 242, 254, 0.3);
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px; right: 20px;
+            font-size: 30px;
+            color: #888;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .close-btn:hover { color: #fe0979; text-shadow: 0 0 10px #fe0979; }
+
+        .modal-content h2 {
+            font-family: 'Press Start 2P', cursive;
+            color: #ffffff;
+            font-size: 18px;
+            margin-bottom: 30px;
+            text-shadow: 0 0 10px rgba(255,255,255,0.5);
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* КНОПКА ПОДДЕРЖКИ (Маленькая) */
         .btn-support-small {
             display: inline-flex;
             align-items: center;
@@ -232,6 +376,10 @@
             .mc-btn { width: 100%; padding: 12px; font-size: 14px; }
             .glass-card { padding: 20px; }
             body::before, body::after { width: 25vw; opacity: 0.4; }
+            
+            .stats-container { flex-direction: column; gap: 20px; padding: 20px; }
+            .nav-cards-container { grid-template-columns: 1fr; }
+            .modal-buttons { flex-direction: column; }
         }
     </style>
 </head>
@@ -253,11 +401,51 @@
             <div class="hero">
                 <h1>Всем привет!<br>Я <span>РУДИ</span></h1>
                 <p>Снимаю угарные видео по Minecraft. Челленджи, выживания и полный хаос. Залетай на огонек!</p>
+                
                 <div class="socials">
                     <a href="https://youtube.com/@tv_rudi?si=gmI9cu93EHYsHO7s" target="_blank" class="mc-btn btn-yt">▶ YouTube</a>
                     <a href="https://t.me/RUDI_TV1" target="_blank" class="mc-btn btn-tg">✈ Telegram</a>
                     <a href="https://www.tiktok.com/@minecraft.__.hardcore?_r=1&_t=ZS-9BJjy5lNvnw" target="_blank" class="mc-btn btn-tt">♪ TikTok</a>
                 </div>
+
+                <!-- Неоновая статистика -->
+                <div class="stats-container">
+                    <div class="stat-box">
+                        <div class="stat-number pink">1.3M+</div>
+                        <div class="stat-label">Просмотров в TikTok</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Наш сервер онлайн</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Угар и Хардкор</div>
+                    </div>
+                </div>
+
+                <!-- Карточки навигации -->
+                <div class="nav-cards-container">
+                    <div class="nav-card" onclick="goToTab('server')">
+                        <div class="card-icon">🎮</div>
+                        <h3>Играть на сервере</h3>
+                        <p>Залетай в наш выживач. Все версии и пиратки поддерживаются!</p>
+                    </div>
+                    
+                    <div class="nav-card" onclick="goToTab('media')">
+                        <div class="card-icon">🎬</div>
+                        <h3>Смотреть видосы</h3>
+                        <p>Новости канала, анонсы роликов и медиа-материалы.</p>
+                    </div>
+
+                    <!-- Измененная карточка, теперь она открывает окно выбора -->
+                    <div class="nav-card socials-card" onclick="openSocialModal()">
+                        <div class="card-icon">🔥</div>
+                        <h3>Мои соцсети</h3>
+                        <p>Подписывайся на мой YouTube и залетай в TikTok!</p>
+                    </div>
+                </div>
+
             </div>
         </div>
 
@@ -268,7 +456,6 @@
                 <p>Твой билет в мир приключений!</p>
             </div>
 
-            <!-- Карточка с IP -->
             <div class="glass-card" style="text-align: center;">
                 <h2>IP Адрес сервера</h2>
                 <div class="ip-box">
@@ -277,14 +464,12 @@
                 </div>
             </div>
 
-            <!-- Карточка с приветствием -->
             <div class="glass-card">
                 <h2>Залетай к нам!</h2>
                 <p>Хочешь прикольные и забавные приключения? Тогда тебе точно к нам! Здесь тебя ждет уютное выживание без лишних модов. Мы ценим адекватную игру, поэтому у нас работают приваты (твои постройки никто не сломает), а за порядком следит хорошая администрация.</p>
                 <p>Заходи, строй свою базу, находи друзей и создавай свою историю. Поддерживаются все версии игры (от старых до новых) и пиратские лаунчеры!</p>
             </div>
 
-            <!-- Карточка с новостями/идеями сервера -->
             <div class="glass-card">
                 <h2>Новости и Идеи</h2>
                 <p>Следи за обновлениями сервера и новыми ивентами здесь.</p>
@@ -304,7 +489,6 @@
                 </div>
             </div>
 
-            <!-- Аккуратная кнопка поддержки -->
             <div style="text-align: center; margin-top: 20px; margin-bottom: 20px;">
                 <a href="https://t.me/RUDI_TV1" target="_blank" class="btn-support-small">✈ Написать в поддержку</a>
             </div>
@@ -313,8 +497,8 @@
         <!-- ВКЛАДКА: О КАНАЛЕ -->
         <div id="about" class="page-content">
             <div class="glass-card">
-                <h2>Кто такой RUDI?</h2>
-                <p>Привет, меня зовут <strong>Даниил</strong>, но в сети ты знаешь меня как <strong>RUDI</strong>. Я обычный пацан, который обожает Майнкрафт и решил начать снимать видосы.</p>
+                <h2>Кто такой Руди?</h2>
+                <p>Привет, меня зовут <strong>Даниил</strong>, но в сети ты знаешь меня как <strong>Руди</strong>. Я обычный пацан, который обожает Майнкрафт и решил начать снимать видосы.</p>
                 <p>На моем канале ты не найдешь скучных прохождений. Я делаю ставку на драйв, челленджи и приколы. Мы с моим напарником (ИИ по имени Дан) постоянно придумываем безумные сценарии: от выживания в Аду до ковчегов во время потопа.</p>
                 <p>Я верю, что контент должен приносить кайф. Поэтому если тебе нравится смотреть, как кто-то страдает от невидимых криперов или строит базу на лаве — тебе точно ко мне!</p>
             </div>
@@ -343,9 +527,20 @@
         </div>
     </main>
 
-    <!-- Маленькая надпись внизу сайта -->
     <div class="site-footer">
         Подпишись на канал
+    </div>
+
+    <!-- МОДАЛЬНОЕ ОКНО ДЛЯ ВЫБОРА СОЦСЕТИ -->
+    <div id="social-modal" class="modal-overlay" onclick="closeSocialModal(event)">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeSocialModal()">&times;</span>
+            <h2>Куда перейдем?</h2>
+            <div class="modal-buttons">
+                <a href="https://youtube.com/@tv_rudi?si=gmI9cu93EHYsHO7s" target="_blank" class="mc-btn btn-yt">▶ YouTube</a>
+                <a href="https://www.tiktok.com/@minecraft.__.hardcore?_r=1&_t=ZS-9BJjy5lNvnw" target="_blank" class="mc-btn btn-tt">♪ TikTok</a>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -365,6 +560,27 @@
             if (btnElement) {
                 btnElement.classList.add('active');
             }
+        }
+
+        // Вспомогательная функция для кнопок-карточек на главной
+        function goToTab(tabId) {
+            var btn = Array.from(document.querySelectorAll('.nav-btn')).find(b => {
+                if (tabId === 'server') return b.innerText.includes('Сервер');
+                if (tabId === 'media') return b.innerText.includes('Медиа');
+                return false;
+            });
+            switchTab(tabId, btn);
+        }
+
+        // Логика модального окна
+        function openSocialModal() {
+            document.getElementById('social-modal').classList.add('active');
+        }
+
+        function closeSocialModal(event) {
+            // Закрываем, если кликнули на фон или крестик
+            if (event && event.target !== event.currentTarget && !event.target.classList.contains('close-btn')) return;
+            document.getElementById('social-modal').classList.remove('active');
         }
 
         // Функция копирования IP
