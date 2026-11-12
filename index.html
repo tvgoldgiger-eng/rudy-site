@@ -114,7 +114,6 @@ main{flex:1;margin-top:100px;display:flex;justify-content:center;padding:20px;z-
 .poll-container{background:rgba(18,18,18,0.85);border:1px solid rgba(255,255,255,0.05);border-radius:15px;padding:30px;margin-bottom:20px;backdrop-filter:blur(5px);text-align:center;}
 .poll-container h2{font-family:'Press Start 2P',cursive;color:#00f2fe;font-size:18px;margin-bottom:15px;}
 .poll-container p{color:#ccc;margin-bottom:20px;font-size:16px;}
-.poll-container iframe { width: 100%; height: 600px; border: none; border-radius: 10px; background: #fff; }
 @media (max-width:768px){
 .hero h1{font-size:24px}
 .server-hero h1{font-size:22px}
@@ -131,7 +130,6 @@ body::before,body::after{width:25vw;opacity:0.4}
 .about-header-text h2{font-size:20px}
 .latest-video-block{flex-direction:column;text-align:center}
 .roadmap-item{flex-direction:column;gap:5px}
-.poll-container iframe { height: 700px; }
 }
 </style>
 </head>
@@ -168,11 +166,11 @@ body::before,body::after{width:25vw;opacity:0.4}
 </div>
 <div class="donate-btn-wrapper"><a href="https://www.donationalerts.com/r/ruditv" target="_blank" class="btn-donate">💚 Поддержать проект</a></div>
 
-<!-- ВСТРОЕННЫЙ ОПРОС -->
+<!-- ОПРОС С КНОПКОЙ -->
 <div class="poll-container">
     <h2>Какое видео снять следующим?</h2>
     <p>Твой голос решает, что мы будем снимать в следующий раз!</p>
-    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdWgov-NDOXanBVPc13NeFTJk4Cu1n5KN6g2SBpejhYgUyfrA/viewform?embedded=true" frameborder="0" marginheight="0" marginwidth="0">Загрузка…</iframe>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdWgov-NDOXanBVPc13NeFTJk4Cu1n5KN6g2SBpejhYgUyfrA/viewform" target="_blank" class="mc-btn btn-tt" style="display: inline-flex;">🗳️ Проголосовать</a>
 </div>
 
 </div>
