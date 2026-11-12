@@ -54,28 +54,32 @@ async function updateCounter() {
 }
 updateCounter();
 
-// --- ПРОВЕРКА ОНЛАЙНА СЕРВЕРА ---
+// ПРОВЕРКА ОНЛАЙНА СЕРВЕРА
 async function checkServerOnline() {
     const el = document.getElementById('server-online-status');
     if (!el) return;
 
     try {
-        // Делаем запрос к бесплатному API, передавая твой IP
         const response = await fetch('https://api.mcsrvstat.us/3/95.216.92.71:25817');
         const data = await response.json();
 
-        // Если сервер включен
         if (data.online) {
             el.innerText = '🟢 Онлайн: ' + data.players.online + ' / ' + data.players.max;
-            el.style.color = '#4CAF50'; // Зеленый цвет
+            el.style.color = '#4CAF50'; 
         } else {
-            // Если сервер выключен
             el.innerText = '🔴 Сервер офлайн';
-            el.style.color = '#fe0979'; // Розовый цвет
+            el.style.color = '#fe0979'; 
         }
     } catch (e) {
         el.innerText = '⚪ Не удалось проверить статус';
     }
 }
-// Запускаем проверку
 checkServerOnline();
+
+// ОКНО ПРАВИЛ
+function openRulesModal() { document.getElementById('rules-modal').classList.add('active'); }
+
+function closeRulesModal(event) {
+    if (event && event.target !== event.currentTarget && !event.target.classList.contains('close-btn')) return;
+    document.getElementById('rules-modal').classList.remove('active');
+}
