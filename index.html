@@ -2,7 +2,6 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<!-- ТВОЙ КОД ПОДТВЕРЖДЕНИЯ GOOGLE (НЕ УДАЛЯТЬ!) -->
 <meta name="google-site-verification" content="WXYOVEwgX-T9wwPXEOrqahaA0H4_rtDJFyXpmjFtZdA" />
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23121212'/%3E%3Ctext x='50' y='55' font-family='Arial' font-weight='bold' font-size='70' fill='%2300f2fe' text-anchor='middle' dominant-baseline='middle'%3ER%3C/text%3E%3C/svg%3E">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -108,6 +107,81 @@ main{flex:1;margin-top:100px;display:flex;justify-content:center;padding:20px;z-
 .site-footer{text-align:center;padding:30px 20px;color:#555;font-size:12px;letter-spacing:1px;margin-top:40px;border-top:1px solid rgba(255,255,255,0.05)}
 .secret-counter{color:#121212;font-size:12px;margin-top:10px;user-select:text;cursor:default}
 .secret-counter:hover{color:#555}
+
+/* СТИЛИ ДЛЯ БЕГУЩЕЙ СТРОКИ */
+.marquee-container {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    background: rgba(0, 242, 254, 0.1);
+    border-top: 1px solid #00f2fe;
+    border-bottom: 1px solid #00f2fe;
+    padding: 10px 0;
+    margin-top: 20px;
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
+}
+.marquee-content {
+    display: inline-block;
+    padding-left: 100%;
+    animation: marquee 20s linear infinite;
+    color: #00f2fe;
+    font-weight: bold;
+    font-size: 16px;
+    text-shadow: 0 0 5px #00f2fe;
+}
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}
+
+/* СТИЛИ ДЛЯ ОПРОСА */
+.poll-container {
+    background: rgba(18, 18, 18, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 20px;
+    backdrop-filter: blur(5px);
+}
+.poll-container h2 {
+    font-family: 'Press Start 2P', cursive;
+    color: #00f2fe;
+    font-size: 18px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.poll-option {
+    display: block;
+    width: 100%;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: #fff;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: left;
+    transition: 0.3s;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+}
+.poll-option:hover {
+    background: rgba(0, 242, 254, 0.1);
+    border-color: #00f2fe;
+}
+.poll-option.selected {
+    background: rgba(0, 242, 254, 0.2);
+    border-color: #00f2fe;
+    box-shadow: 0 0 10px rgba(0, 242, 254, 0.3);
+}
+.poll-result {
+    display: none;
+    color: #4CAF50;
+    text-align: center;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
 @media (max-width:768px){
 .hero h1{font-size:24px}
 .server-hero h1{font-size:22px}
@@ -159,6 +233,21 @@ body::before,body::after{width:25vw;opacity:0.4}
 </div>
 </div>
 <div class="donate-btn-wrapper"><a href="https://www.donationalerts.com/r/ruditv" target="_blank" class="btn-donate">💚 Поддержать проект</a></div>
+
+<!-- Кнопка Поделиться -->
+<div style="text-align:center; margin-top: 20px;">
+    <button onclick="shareSite()" class="btn-support-small" style="cursor:pointer; border-color: #00f2fe; color: #00f2fe;">🔗 Поделиться сайтом</button>
+</div>
+
+<!-- ОПРОС (Визуальная заглушка) -->
+<div class="poll-container">
+    <h2>Какое видео снять следующим?</h2>
+    <button class="poll-option" onclick="vote('hell')">🔥 Выживание в Аду (Хардкор)</button>
+    <button class="poll-option" onclick="vote('war')">⚔️ Война за территорию (PvP Тактика)</button>
+    <button class="poll-option" onclick="vote('speedrun')">⚡ Спидран с тактикой</button>
+    <div id="poll-result" class="poll-result">✅ Твой голос учтен! (Демо-режим)</div>
+</div>
+
 </div>
 
 <div id="server" class="page-content">
@@ -167,10 +256,8 @@ body::before,body::after{width:25vw;opacity:0.4}
 <h2>IP Адрес сервера</h2>
 <div class="ip-box">
 <div class="ip-text" id="server-ip">95.216.92.71:25817</div>
-<!-- СЮДА БУДЕТ ВЫВОДИТЬСЯ ОНЛАЙН -->
 <div id="server-online-status" style="color: #888; margin-bottom: 20px; font-weight: bold; font-size: 18px;">Проверка онлайна...</div>
 <button class="btn-copy" onclick="copyIP()">СКОПИРОВАТЬ IP</button>
-<!-- Кнопка правил -->
 <div style="text-align:center; margin-top: 20px;">
     <button onclick="openRulesModal()" class="btn-support-small" style="cursor:pointer; border-color: #fe0979; color: #fe0979;">📜 Правила сервера</button>
 </div>
@@ -241,6 +328,14 @@ body::before,body::after{width:25vw;opacity:0.4}
 <div class="donate-btn-wrapper"><a href="https://www.donationalerts.com/r/ruditv" target="_blank" class="btn-donate">💚 Поддержать контент</a></div>
 </div>
 </main>
+
+<!-- БЕГУЩАЯ СТРОКА -->
+<div class="marquee-container">
+    <div class="marquee-content">
+        🔥 СТРИМ В СУББОТУ В 20:00! ЗАХОДИ НА СЕРВЕР: 95.216.92.71:25817 🔥 ПОДПИСЫВАЙСЯ НА КАНАЛ RUDI! 🔥
+    </div>
+</div>
+
 <div class="site-footer">
 Подпишись на канал
 <div class="secret-counter" id="secret-counter">Загрузка...</div>
@@ -255,7 +350,6 @@ body::before,body::after{width:25vw;opacity:0.4}
 </div>
 </div>
 </div>
-<!-- МОДАЛЬНОЕ ОКНО ПРАВИЛ -->
 <div id="rules-modal" class="modal-overlay" onclick="closeRulesModal(event)">
     <div class="modal-content" style="border-color: #fe0979; max-width: 600px;">
         <span class="close-btn" onclick="closeRulesModal()">&times;</span>
@@ -269,7 +363,6 @@ body::before,body::after{width:25vw;opacity:0.4}
         </div>
     </div>
 </div>
-<!-- ПОДКЛЮЧАЕМ НАШ ОТДЕЛЬНЫЙ СКРИПТ -->
 <script src="script.js"></script>
 </body>
 </html>
