@@ -1,3 +1,4 @@
+// ПЕРЕКЛЮЧЕНИЕ ВКЛАДОК
 function switchTab(tabId, btnElement) {
     var contents = document.querySelectorAll('.page-content');
     for (var i = 0; i < contents.length; i++) { contents[i].classList.remove('active'); }
@@ -18,6 +19,7 @@ function goToTab(tabId) {
     switchTab(tabId, btn);
 }
 
+// ОКНО ВЫБОРА СОЦСЕТЕЙ
 function openSocialModal() { document.getElementById('social-modal').classList.add('active'); }
 
 function closeSocialModal(event) {
@@ -25,6 +27,7 @@ function closeSocialModal(event) {
     document.getElementById('social-modal').classList.remove('active');
 }
 
+// КОПИРОВАНИЕ IP
 function copyIP() {
     var ipText = document.getElementById("server-ip").innerText;
     navigator.clipboard.writeText(ipText).then(function() {
@@ -34,6 +37,7 @@ function copyIP() {
     });
 }
 
+// СКРЫТЫЙ СЧЕТЧИК ПОСЕЩЕНИЙ
 const counterElement = document.getElementById('secret-counter');
 const key = 'rudy-site-visits-v1';
 async function updateCounter() {
@@ -49,3 +53,29 @@ async function updateCounter() {
     }
 }
 updateCounter();
+
+// --- ПРОВЕРКА ОНЛАЙНА СЕРВЕРА ---
+async function checkServerOnline() {
+    const el = document.getElementById('server-online-status');
+    if (!el) return;
+
+    try {
+        // Делаем запрос к бесплатному API, передавая твой IP
+        const response = await fetch('https://api.mcsrvstat.us/3/95.216.92.71:25817');
+        const data = await response.json();
+
+        // Если сервер включен
+        if (data.online) {
+            el.innerText = '🟢 Онлайн: ' + data.players.online + ' / ' + data.players.max;
+            el.style.color = '#4CAF50'; // Зеленый цвет
+        } else {
+            // Если сервер выключен
+            el.innerText = '🔴 Сервер офлайн';
+            el.style.color = '#fe0979'; // Розовый цвет
+        }
+    } catch (e) {
+        el.innerText = '⚪ Не удалось проверить статус';
+    }
+}
+// Запускаем проверку
+checkServerOnline();
