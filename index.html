@@ -170,6 +170,10 @@ body::before,body::after{width:25vw;opacity:0.4}
 <!-- СЮДА БУДЕТ ВЫВОДИТЬСЯ ОНЛАЙН -->
 <div id="server-online-status" style="color: #888; margin-bottom: 20px; font-weight: bold; font-size: 18px;">Проверка онлайна...</div>
 <button class="btn-copy" onclick="copyIP()">СКОПИРОВАТЬ IP</button>
+<!-- Кнопка правил -->
+<div style="text-align:center; margin-top: 20px;">
+    <button onclick="openRulesModal()" class="btn-support-small" style="cursor:pointer; border-color: #fe0979; color: #fe0979;">📜 Правила сервера</button>
+</div>
 </div>
 </div>
 <div class="glass-card">
@@ -250,6 +254,20 @@ body::before,body::after{width:25vw;opacity:0.4}
 <a href="https://www.tiktok.com/@minecraft.__.hardcore?_r=1&_t=ZS-9BJjy5lNvnw" target="_blank" class="mc-btn btn-tt">♪ TikTok</a>
 </div>
 </div>
+</div>
+<!-- МОДАЛЬНОЕ ОКНО ПРАВИЛ -->
+<div id="rules-modal" class="modal-overlay" onclick="closeRulesModal(event)">
+    <div class="modal-content" style="border-color: #fe0979; max-width: 600px;">
+        <span class="close-btn" onclick="closeRulesModal()">&times;</span>
+        <h2 style="color: #fe0979; text-shadow: 0 0 10px #fe0979;">ПРАВИЛА СЕРВЕРА</h2>
+        <div style="text-align: left; color: #ccc; font-size: 15px; line-height: 1.8;">
+            <p>1. <strong>Запрещен грифинг.</strong> Ломать чужие постройки, воровать из сундуков — <span style="color: #ff4444;">БАН навсегда</span>.</p>
+            <p>2. <strong>Запрещены оскорбления.</strong> Уважай других игроков. За мат в чате — <span style="color: #ffcc00;">МУТ на 3 часа</span>.</p>
+            <p>3. <strong>Запрещены читы.</strong> Использование X-Ray, KillAura и прочих софтов — <span style="color: #ff4444;">БАН навсегда</span>.</p>
+            <p>4. <strong>Запрещен спам.</strong> Не флуди в чате и не рекламируй другие серверы — <span style="color: #ffcc00;">МУТ на 1 час</span>.</p>
+            <p>5. <strong>Будь адекватным.</strong> Не провоцируй конфликты. Если есть проблема — пиши в поддержку.</p>
+        </div>
+    </div>
 </div>
 <!-- ПОДКЛЮЧАЕМ НАШ ОТДЕЛЬНЫЙ СКРИПТ -->
 <script src="script.js"></script>
