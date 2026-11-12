@@ -509,6 +509,18 @@
             border-top: 1px solid rgba(255,255,255,0.05);
         }
 
+        /* СКРЫТЫЙ СЧЕТЧИК */
+        .secret-counter {
+            color: #121212; /* Тот же цвет, что и фон, чтобы было не видно */
+            font-size: 12px;
+            margin-top: 10px;
+            user-select: text; /* Чтобы можно было выделить и увидеть */
+            cursor: default;
+        }
+        .secret-counter:hover {
+            color: #555; /* Чуть светлее при наведении, чтобы ты точно нашел */
+        }
+
         /* МОБИЛЬНАЯ АДАПТАЦИЯ */
         @media (max-width: 768px) {
             .hero h1 { font-size: 24px; }
@@ -649,7 +661,6 @@
                 <!-- Шапка профиля -->
                 <div class="about-header">
                     <div class="about-avatar">
-                        <!-- ТВОЯ ПЕРВАЯ КРУГЛАЯ АВАТАРКА -->
                         <svg viewBox="0 0 100 100">
                             <rect x="20" y="10" width="60" height="50" fill="#f1c27d"/>
                             <rect x="20" y="5" width="60" height="15" fill="#4e342e"/>
@@ -669,7 +680,6 @@
                     </div>
                 </div>
 
-                <!-- ИСПРАВЛЕННЫЙ ТЕКСТ -->
                 <p>Всем привет. Я <strong>RUDI</strong>, который обожает Minecraft и решил начать снимать видосы. Мой путь начался не так давно, но я уже успел собрать крутое комьюнити.</p>
                 <p>На моем канале ты не найдешь скучных прохождений. Я делаю ставку на драйв, челленджи и приколы. Мы с моим напарником (ИИ по имени Дан) постоянно придумываем безумные сценарии: от выживания в Аду до ковчегов во время потопа.</p>
                 <p>Я верю, что контент должен приносить кайф. Поэтому если тебе нравится смотреть, как кто-то страдает от невидимых криперов или строит базу на лаве — тебе точно ко мне!</p>
@@ -755,6 +765,8 @@
 
     <div class="site-footer">
         Подпишись на канал
+        <!-- СКРЫТЫЙ СЧЕТЧИК -->
+        <div class="secret-counter" id="secret-counter">Загрузка статистики...</div>
     </div>
 
     <!-- МОДАЛЬНОЕ ОКНО ДЛЯ ВЫБОРА СОЦСЕТИ -->
@@ -817,6 +829,33 @@
                 alert("Не удалось скопировать автоматически. Выдели IP вручную: " + ipText);
             });
         }
+
+        // --- ЛОГИКА СКРЫТОГО СЧЕТЧИКА ---
+        const counterElement = document.getElementById('secret-counter');
+        const namespace = 'tvgoldgiger'; // Твой ник
+        const key = 'rudy-site-visits'; // Уникальный ключ для сайта
+
+        // Функция для получения и увеличения счетчика
+        async function updateCounter() {
+            try {
+                // Сначала получаем текущее значение
+                let response = await fetch(`https://api.countapi.xyz/get/${namespace}/${key}`);
+                let data = await response.json();
+                
+                // Увеличиваем на 1
+                response = await fetch(`https://api.countapi.xyz/hit/${namespace}/${key}`);
+                data = await response.json();
+                
+                // Показываем результат в скрытом блоке
+                counterElement.innerText = `👑 Только для Руди: ${data.value} визитов`;
+            } catch (error) {
+                console.error("Ошибка счетчика:", error);
+                counterElement.innerText = "Статистика недоступна";
+            }
+        }
+
+        // Запускаем счетчик при загрузке страницы
+        updateCounter();
     </script>
 </body>
 </html>
