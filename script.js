@@ -27,6 +27,14 @@ function closeSocialModal(event) {
     document.getElementById('social-modal').classList.remove('active');
 }
 
+// ОКНО ПРАВИЛ
+function openRulesModal() { document.getElementById('rules-modal').classList.add('active'); }
+
+function closeRulesModal(event) {
+    if (event && event.target !== event.currentTarget && !event.target.classList.contains('close-btn')) return;
+    document.getElementById('rules-modal').classList.remove('active');
+}
+
 // КОПИРОВАНИЕ IP
 function copyIP() {
     var ipText = document.getElementById("server-ip").innerText;
@@ -76,10 +84,43 @@ async function checkServerOnline() {
 }
 checkServerOnline();
 
-// ОКНО ПРАВИЛ
-function openRulesModal() { document.getElementById('rules-modal').classList.add('active'); }
+// КНОПКА ПОДЕЛИТЬСЯ
+async function shareSite() {
+    const shareData = {
+        title: 'RUDI | Официальный сайт',
+        text: 'Залетай на мой сайт и на сервер в Майнкрафте!',
+        url: window.location.href
+    };
 
-function closeRulesModal(event) {
-    if (event && event.target !== event.currentTarget && !event.target.classList.contains('close-btn')) return;
-    document.getElementById('rules-modal').classList.remove('active');
+    if (navigator.share) {
+        try {
+            await navigator.share(shareData);
+        } catch (err) {
+            if (err.name !== 'AbortError') {
+                console.error('Ошибка при попытке поделиться:', err);
+            }
+        }
+    } else {
+        // Запасной вариант для компов (копируем ссылку)
+        try {
+            await navigator.clipboard.writeText(window.location.href);
+            alert("✅ Ссылка на сайт скопирована в буфер обмена!");
+        } catch (err) {
+            alert("Не удалось скопировать ссылку. Скопируй вручную из адресной строки.");
+        }
+    }
+}
+
+// ОПРОС (Демо-режим)
+function vote(option) {
+    // Убираем выделение со всех кнопок
+    document.querySelectorAll('.poll-option').forEach(btn => btn.classList.remove('selected'));
+    
+    // Подсвечиваем выбранную кнопку
+    if (event) {
+        event.target.classList.add('selected');
+    }
+    
+    // Показываем сообщение, что голос учтен
+    document.getElementById('poll-result').style.display = 'block';
 }
