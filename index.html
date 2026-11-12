@@ -57,6 +57,9 @@ main{flex:1;margin-top:100px;display:flex;justify-content:center;padding:20px;z-
 .modal-buttons{display:flex;gap:20px;justify-content:center;flex-wrap:wrap}
 .btn-support-small{display:inline-flex;align-items:center;justify-content:center;padding:10px 24px;font-weight:700;font-size:14px;color:#fff;background:rgba(0,136,204,0.1);border:2px solid #0088cc;border-radius:8px;text-decoration:none;text-transform:uppercase;letter-spacing:1px;transition:all 0.3s ease;box-shadow:0 0 10px rgba(0,136,204,0.2);cursor:pointer;font-family:'Montserrat',sans-serif}
 .btn-support-small:hover{background:#0088cc;box-shadow:0 0 20px rgba(0,136,204,0.8);text-shadow:0 0 5px #fff;transform:translateY(-2px)}
+.donate-btn-wrapper{text-align:center;margin:40px 0 20px}
+.btn-donate{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:12px 30px;font-weight:900;font-size:16px;color:#121212;background:#4CAF50;border:2px solid #81C784;border-radius:8px;text-decoration:none;text-transform:uppercase;letter-spacing:1px;transition:all 0.3s ease;cursor:pointer;font-family:'Montserrat',sans-serif;box-shadow:0 0 15px rgba(76,175,80,0.4)}
+.btn-donate:hover{background:#388E3C;color:#fff;box-shadow:0 0 25px rgba(76,175,80,0.8);transform:translateY(-3px)}
 .glass-card{background:rgba(18,18,18,0.85);border:1px solid rgba(255,255,255,0.05);border-radius:15px;padding:40px;box-shadow:0 15px 35px rgba(0,0,0,0.4);position:relative;overflow:hidden;backdrop-filter:blur(5px);margin-bottom:20px}
 .glass-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,#fe0979,#00f2fe)}
 .glass-card h2{font-family:'Press Start 2P',cursive;color:#00f2fe;margin-bottom:25px;font-size:18px}
@@ -154,6 +157,7 @@ body::before,body::after{width:25vw;opacity:0.4}
 <div class="nav-card socials-card" onclick="openSocialModal()"><div class="card-icon">🔥</div><h3>Мои соцсети</h3><p>Подписывайся на мой YouTube и залетай в TikTok!</p></div>
 </div>
 </div>
+<div class="donate-btn-wrapper"><a href="https://www.donationalerts.com/r/ruditv" target="_blank" class="btn-donate">💚 Поддержать проект</a></div>
 </div>
 <div id="server" class="page-content">
 <div class="server-hero"><h1>НАШ СЕРВЕР</h1><p>Твой билет в мир приключений!</p></div>
@@ -176,6 +180,7 @@ body::before,body::after{width:25vw;opacity:0.4}
 </div>
 </div>
 <div style="text-align:center;margin-top:20px;margin-bottom:20px"><a href="https://t.me/RUDI_TV1" target="_blank" class="btn-support-small">✈ Написать в поддержку</a></div>
+<div class="donate-btn-wrapper"><a href="https://www.donationalerts.com/r/ruditv" target="_blank" class="btn-donate">💚 Поддержать сервер</a></div>
 </div>
 <div id="about" class="page-content">
 <div class="glass-card">
@@ -195,6 +200,7 @@ body::before,body::after{width:25vw;opacity:0.4}
 <div class="feature-item"><div class="feature-icon">🌍</div><h4>Свой Сервер</h4><p>Уютное выживание с приватами и адекватными игроками.</p></div>
 </div>
 </div>
+<div class="donate-btn-wrapper"><a href="https://www.donationalerts.com/r/ruditv" target="_blank" class="btn-donate">💚 Поддержать автора</a></div>
 </div>
 <div id="media" class="page-content">
 <div class="latest-video-block">
@@ -219,6 +225,7 @@ body::before,body::after{width:25vw;opacity:0.4}
 <div class="roadmap-item"><div class="roadmap-date">В ближайшем будущем</div><div class="roadmap-text"><h4>Стрим с подписчиками</h4><p>Соберемся на нашем сервере огромной толпой и устроим хаос.</p></div></div>
 </div>
 </div>
+<div class="donate-btn-wrapper"><a href="https://www.donationalerts.com/r/ruditv" target="_blank" class="btn-donate">💚 Поддержать контент</a></div>
 </div>
 </main>
 <div class="site-footer">
@@ -252,34 +259,4 @@ return false;
 });
 switchTab(tabId,btn);
 }
-function openSocialModal(){document.getElementById('social-modal').classList.add('active')}
-function closeSocialModal(event){
-if(event&&event.target!==event.currentTarget&&!event.target.classList.contains('close-btn'))return;
-document.getElementById('social-modal').classList.remove('active')
-}
-function copyIP(){
-var ipText=document.getElementById("server-ip").innerText;
-navigator.clipboard.writeText(ipText).then(function(){
-alert("✅ IP скопирован: "+ipText+"\n\nВставляй его в Minecraft и заходи на сервер!")
-}).catch(function(err){
-alert("Не удалось скопировать автоматически. Выдели IP вручную: "+ipText)
-})
-}
-const counterElement=document.getElementById('secret-counter');
-const key='rudy-site-visits-v1';
-async function updateCounter(){
-try{
-const BASE="https://countapi.mileshilliard.com/api/v1";
-await fetch(BASE+"/get/"+key);
-let response=await fetch(BASE+"/hit/"+key);
-let data=await response.json();
-counterElement.innerText="👑 Только для Руди: "+data.value+" визитов";
-}catch(error){
-console.error("Ошибка счетчика:",error);
-counterElement.innerText="Статистика недоступна";
-}
-}
-updateCounter();
-</script>
-</body>
-</html>
+function openSocialModal(){document.getElementById('social-modal').classList.add('active
