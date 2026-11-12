@@ -2,6 +2,7 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
+<!-- ТВОЙ КОД ПОДТВЕРЖДЕНИЯ GOOGLE (НЕ УДАЛЯТЬ!) -->
 <meta name="google-site-verification" content="WXYOVEwgX-T9wwPXEOrqahaA0H4_rtDJFyXpmjFtZdA" />
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23121212'/%3E%3Ctext x='50' y='55' font-family='Arial' font-weight='bold' font-size='70' fill='%2300f2fe' text-anchor='middle' dominant-baseline='middle'%3ER%3C/text%3E%3C/svg%3E">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -242,21 +243,7 @@ body::before,body::after{width:25vw;opacity:0.4}
 </div>
 </div>
 </div>
-<script>
-function switchTab(tabId,btnElement){
-var contents=document.querySelectorAll('.page-content');
-for(var i=0;i<contents.length;i++){contents[i].classList.remove('active')}
-var buttons=document.querySelectorAll('.nav-btn');
-for(var i=0;i<buttons.length;i++){buttons[i].classList.remove('active')}
-document.getElementById(tabId).classList.add('active');
-if(btnElement){btnElement.classList.add('active')}
-}
-function goToTab(tabId){
-var btn=Array.from(document.querySelectorAll('.nav-btn')).find(b=>{
-if(tabId==='server')return b.innerText.includes('Сервер');
-if(tabId==='media')return b.innerText.includes('Медиа');
-return false;
-});
-switchTab(tabId,btn);
-}
-function openSocialModal(){document.getElementById('social
+<!-- ПОДКЛЮЧАЕМ НАШ ОТДЕЛЬНЫЙ СКРИПТ -->
+<script src="script.js"></script>
+</body>
+</html>
